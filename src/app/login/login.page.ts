@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-login',
@@ -11,9 +13,17 @@ export class LoginPage implements OnInit {
   email: string = '';
   password: string = '';
 
-  constructor(private navCtrl: NavController, private alertController: AlertController) { }
+  constructor(
+    private navCtrl: NavController,
+    private alertController: AlertController,
+    private router: Router
+  ) { }
 
   ngOnInit() {
+  }
+
+  goToRegister() {
+    this.router.navigate(['/registro']);
   }
 
   // Método para mostrar alerta de error

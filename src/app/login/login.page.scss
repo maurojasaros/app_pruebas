@@ -8,6 +8,7 @@
 .login-container {
   width: 100%;
   max-width: 380px;
+  padding: 10px;
 }
 
 .login-card {
@@ -16,6 +17,15 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   padding: 20px;
   animation: slideUpFadeIn 1s ease forwards;
+  
+  // Responsividad del tamaño del card en diferentes pantallas
+  @media (min-width: 768px) {
+    max-width: 500px; // Aumenta el ancho en tablets
+  }
+
+  @media (min-width: 1024px) {
+    max-width: 600px; // Aumenta el ancho en pantallas grandes
+  }
 }
 
 @keyframes slideUpFadeIn {
