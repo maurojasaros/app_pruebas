@@ -1,0 +1,7 @@
+{
+  "name": "app_s3",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
