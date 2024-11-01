@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <app-logo-component></app-logo-component> <!-- Esto debería funcionar -->
+      <app-logo-component></app-logo-component>
     </ion-buttons>
     <ion-title size="large">Home</ion-title>
     <ion-buttons slot="end">
@@ -21,6 +21,7 @@
     <ion-card-content class="custom-card-content">
       <div id="user">
         <p>Usuario: {{ email }}</p>
+
         <ion-item class="input-item">
           <ion-label position="floating">Nombre</ion-label>
           <ion-input [(ngModel)]="nombre" [ngClass]="{'animate': isAnimating}" type="text"></ion-input>
@@ -32,8 +33,29 @@
         </ion-item>
 
         <ion-item class="input-item">
-          <ion-label position="floating">Nivel de Educación</ion-label>
-          <ion-input [(ngModel)]="nivelEducacion" type="text"></ion-input>
+          <ion-label>Nivel de Educación</ion-label>
+          <ion-select [(ngModel)]="nivelEducacion">
+            <ion-select-option value="universitario">Universitario</ion-select-option>
+            <ion-select-option value="magister">Magister</ion-select-option>
+            <ion-select-option value="doctorado">Doctorado</ion-select-option>
+            <ion-select-option value="secundaria">Secundaria</ion-select-option>
+            <ion-select-option value="tecnico">Técnico</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item class="input-item">
+          <ion-label position="floating">Dirección</ion-label>
+          <ion-input [(ngModel)]="direccion" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item class="input-item">
+          <ion-label position="floating">Calle</ion-label>
+          <ion-input [(ngModel)]="calle" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item class="input-item">
+          <ion-label position="floating">Ciudad</ion-label>
+          <ion-input [(ngModel)]="ciudad" type="text"></ion-input>
         </ion-item>
 
         <ion-item class="input-item">
@@ -50,8 +72,6 @@
       </div>
     </ion-card-content>
   </ion-card>
-
-  
 </ion-content>
 
 

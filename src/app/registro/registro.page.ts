@@ -13,6 +13,9 @@ export class RegistroPage {
   nombre: string = '';
   apellido: string = '';
   nivelEducacion: string = '';
+  direccion: string = '';
+  calle: string = '';
+  ciudad: string = '';
   fechaNacimiento: string = '';
   isAnimating: boolean = false;
 
@@ -37,7 +40,12 @@ export class RegistroPage {
   async mostrarInformacion() {
     const alert = await this.alertController.create({
       header: 'Información del Usuario',
-      message: `Su nombre es: ${this.nombre} ${this.apellido}`,
+      message: `
+        Su nombre es: ${this.nombre} ${this.apellido} <br>
+        Nivel de Educación: ${this.nivelEducacion} <br>
+        Dirección: ${this.direccion}, ${this.calle}, ${this.ciudad} <br>
+        Fecha de Nacimiento: ${this.fechaNacimiento}
+      `,
       buttons: ['OK']
     });
     await alert.present();
@@ -50,6 +58,9 @@ export class RegistroPage {
       this.nombre = '';
       this.apellido = '';
       this.nivelEducacion = '';
+      this.direccion = '';
+      this.calle = '';
+      this.ciudad = '';
       this.fechaNacimiento = '';
       this.isAnimating = false; // Desactiva la animación
     }, 1000); // Duración de la animación
