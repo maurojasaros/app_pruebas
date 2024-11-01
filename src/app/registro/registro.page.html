@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <app-logo-component></app-logo-component>
     </ion-buttons>
-    <ion-title size="large">Home</ion-title>
+    
     <ion-buttons slot="end">
       <ion-button (click)="abrirMenu()" class="custom-menu-button">
         <ion-icon name="layers-outline"></ion-icon>
@@ -61,13 +61,13 @@
         <ion-item class="input-item">
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Fecha de Nacimiento</mat-label>
-            <input matInput [matDatepicker]="picker" [(ngModel)]="fechaNacimiento" />
+            <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate" />
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
         </ion-item>
 
-        <ion-button expand="full" (click)="mostrarInformacion()">Mostrar</ion-button>
+        <ion-button expand="full" (click)="guardar()">Guardar Cambios</ion-button>
         <ion-button expand="full" (click)="limpiarCampos()" class="clear-button">Limpiar</ion-button>
       </div>
     </ion-card-content>

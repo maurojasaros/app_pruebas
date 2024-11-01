@@ -14,6 +14,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 // Importa el componente independiente
 import { LogoComponentComponent } from './logo-component/logo-component.component';
 
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [AppComponent], // Solo AppComponent aquí
   imports: [
@@ -24,7 +26,8 @@ import { LogoComponentComponent } from './logo-component/logo-component.componen
     MatDatepickerModule,
     MatInputModule,
     MatNativeDateModule,
-    LogoComponentComponent // Agrega el componente aquí
+    LogoComponentComponent, // Agrega el componente aquí
+    FormsModule,
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
