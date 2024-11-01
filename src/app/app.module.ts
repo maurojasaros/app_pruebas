@@ -11,8 +11,11 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 
+// Importa el componente independiente
+import { LogoComponentComponent } from './logo-component/logo-component.component';
+
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent], // Solo AppComponent aquí
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
@@ -20,7 +23,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     BrowserAnimationsModule,
     MatDatepickerModule,
     MatInputModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    LogoComponentComponent // Agrega el componente aquí
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

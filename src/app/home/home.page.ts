@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -25,8 +26,13 @@ export class HomePage {
     { nombre: 'Call of Duty', precio: 10.799, enStock: true }
   ];
 
-  constructor(private route: ActivatedRoute, private alertController: AlertController) {}
+  constructor(private route: ActivatedRoute, private alertController: AlertController, private menu: MenuController) {}
 
+
+  abrirMenu() {
+    this.menu.open('mainMenu');
+  }
+  
   ngOnInit() {
     // Obtener los parámetros de la URL
     this.route.queryParams.subscribe(params => {

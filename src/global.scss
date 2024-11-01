@@ -37,3 +37,16 @@
 @import "@ionic/angular/css/palettes/dark.system.css";
 
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+ion-app, ion-content {
+    --background: radial-gradient(circle, #FBFBFB 0%, rgb(100, 237, 146) 100%);
+}
+
+ion-toolbar {
+    background-color: #4CAF50; // Cambia el color de fondo
+    color: rgb(66, 18, 156); // Cambia el color del texto (también afectará los iconos)
+    --ion-color-primary: #4CAF50; // Cambia el color primario del ion-toolbar
+    
+    // Asegúrate de que el color del icono sea visible
+    --ion-color: rgb(155, 32, 32); // Esto afectará a todos los elementos que usen el color primario
+}
