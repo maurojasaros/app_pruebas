@@ -1,0 +1,43 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <!-- Sección de Juegos -->
+  <section id="juegos">
+    <ion-header collapse="condense">
+      <ion-toolbar>
+        <ion-title size="large">Juegos</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    
+    <ion-card *ngFor="let juego of juegos">
+      <img [src]="juego.imagen" alt="{{ juego.titulo }}" style="width: 100%; height: auto;" />
+      <ion-card-header>
+        <ion-card-title>{{ juego.titulo }}</ion-card-title>
+        <ion-card-subtitle>${{ juego.precio }}</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p>{{ juego.descripcion }}</p>
+        <!--<ion-button expand="full" color="primary" (click)="verCarrito()">Ver Carrito</ion-button>-->
+        <ion-button expand="full" color="secondary" (click)="verFavoritos()">Ver Favoritos</ion-button>
+      </ion-card-content>
+    </ion-card>
+  </section>
+
+  <!-- Sección de Favoritos -->
+  <section id="favoritos">
+    <ion-header collapse="condense">
+      <ion-toolbar>
+        <ion-title size="large">Favoritos</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <!-- Uso del componente de Favoritos -->
+    <app-favoritos></app-favoritos> 
+  </section>
+  
+</ion-content>

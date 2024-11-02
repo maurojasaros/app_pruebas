@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 
-
 @Component({
   selector: 'app-carrito',
   templateUrl: './carrito.component.html',
@@ -11,26 +10,34 @@ import { CommonModule } from '@angular/common';
   imports: [IonicModule, CommonModule]
 })
 export class CarritoComponent implements OnInit {
-  items: { titulo: string; precio: number; imagen: string }[] = []; // Aquí almacenaremos los juegos añadidos al carrito
+  items: { titulo: string; precio: number; imagen: string }[] = [];
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    // Cargar el carrito desde localStorage
+    const carritoGuardado = localStorage.getItem('carrito');
+    if (carritoGuardado) {
+      this.items = JSON.parse(carritoGuardado);
+    }
+  }
 
-  // Método para añadir un juego al carrito
   addToCart(juego: any) {
     this.items.push(juego);
     console.log(`Añadido al carrito: ${juego.titulo}`);
+  
+    // Guardar el carrito en localStorage
+    localStorage.setItem('carrito', JSON.stringify(this.items));
   }
 
-  // Método para obtener los juegos en el carrito
+  clearCart() {
+    this.items = [];
+    localStorage.removeItem('carrito'); // Limpiar también el localStorage
+    console.log("Carrito vaciado");
+  }
+
   getCartItems() {
     return this.items;
   }
-
-  // Método para limpiar el carrito
-  clearCart() {
-    this.items = [];
-    console.log("Carrito vaciado");
-  }
 }
+

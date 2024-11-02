@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Favoritos</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="limpiarFavoritos()">Limpiar Favoritos</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let juego of favoritos">
+    <img [src]="juego.imagen" alt="{{ juego.titulo }}" />
+    <ion-card-header>
+      <ion-card-title>{{ juego.titulo }}</ion-card-title>
+      <ion-card-subtitle>${{ juego.precio }}</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+</ion-content>

@@ -15,6 +15,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { LogoComponentComponent } from './logo-component/logo-component.component';
 import { CarritoComponent } from './carrito/carrito.component';
 
+
 import { FormsModule } from '@angular/forms';
 
 
@@ -30,7 +31,8 @@ import { FormsModule } from '@angular/forms';
     MatNativeDateModule,
     LogoComponentComponent, // Agrega el componente aquí
     FormsModule,
-    CarritoComponent
+    CarritoComponent,
+    
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

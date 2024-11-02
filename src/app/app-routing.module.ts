@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+
 import { CarritoComponent } from './carrito/carrito.component';
+import { FavoritosComponent } from './favoritos/favoritos.component';
 
 const routes: Routes = [
   {
@@ -41,6 +43,12 @@ const routes: Routes = [
   { path: 'deportes', loadChildren: () => import('./deportes/deportes.module').then(m => m.DeportesPageModule) },
   { path: 'aventuras', loadChildren: () => import('./aventuras/aventuras.module').then(m => m.AventurasPageModule) },
   { path: 'carrito', component: CarritoComponent },
+  { path: 'favoritos', component: FavoritosComponent },
+  {
+    path: 'tabs',
+    loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)
+  },
+  
 ];
 
 @NgModule({
