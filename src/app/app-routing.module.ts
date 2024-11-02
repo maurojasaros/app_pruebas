@@ -24,6 +24,18 @@ const routes: Routes = [
     path: 'registro',
     loadChildren: () => import('./registro/registro.module').then( m => m.RegistroPageModule)
   },
+  {
+    path: 'terror',
+    loadChildren: () => import('./terror/terror.module').then( m => m.TerrorPageModule)
+  },
+  {
+    path: 'deportes',
+    loadChildren: () => import('./deportes/deportes.module').then( m => m.DeportesPageModule)
+  },
+  {
+    path: 'aventuras',
+    loadChildren: () => import('./aventuras/aventuras.module').then( m => m.AventurasPageModule)
+  },
 ];
 
 @NgModule({
