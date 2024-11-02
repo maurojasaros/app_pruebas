@@ -53,7 +53,7 @@
 
 
   <!-- Card de la categoría de Terror -->
-  <ion-card>
+  <ion-card (click)="navigateToCategory('terror')">
     <img src="../../assets/img/Terror.jpg" alt="Terror" />
     <ion-card-header>
       <ion-card-title>Terror</ion-card-title>
@@ -64,7 +64,7 @@
   </ion-card>
 
   <!-- Card de la categoría de Deportes -->
-  <ion-card>
+  <ion-card (click)="navigateToCategory('deportes')">
     <img src="../../assets/img/Deportes.jpg" alt="Deportes" />
     <ion-card-header>
       <ion-card-title>Deportes</ion-card-title>
@@ -75,7 +75,7 @@
   </ion-card>
 
   <!-- Card de la categoría de Aventuras -->
-  <ion-card>
+  <ion-card (click)="navigateToCategory('aventuras')">
     <img src="../../assets/img/Aventuras.jpg" alt="Aventuras" />
     <ion-card-header>
       <ion-card-title>Aventuras</ion-card-title>

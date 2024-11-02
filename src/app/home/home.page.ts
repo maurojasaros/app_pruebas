@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AlertController } from '@ionic/angular';
-import { MenuController } from '@ionic/angular';
+import { AlertController, MenuController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -26,8 +25,12 @@ export class HomePage {
     { nombre: 'Call of Duty', precio: 10.799, enStock: true }
   ];
 
-  constructor(private route: ActivatedRoute, private alertController: AlertController, private menu: MenuController) {}
-
+  constructor(
+    private route: ActivatedRoute, 
+    private alertController: AlertController, 
+    private menu: MenuController,
+    private navCtrl: NavController // Agregado para la navegación
+  ) {}
 
   abrirMenu() {
     this.menu.open('mainMenu');
@@ -45,32 +48,36 @@ export class HomePage {
   async mostrarInformacion() {
     const alert = await this.alertController.create({
       header: 'Información del Usuario',
-      //message: `Nombre: ${this.nombre}<br>Apellido: ${this.apellido}`,
       message: `Su nombre es: ${this.nombre} ${this.apellido}`,
       buttons: ['OK']
     });
     await alert.present();
   }
 
- // Método para limpiar campos
- limpiarCampos() {
-  this.isAnimating = true; // Activa la animación
-  setTimeout(() => {
-    this.nombre = '';
-    this.apellido = '';
-    this.nivelEducacion = '';
-    this.fechaNacimiento = '';
-    this.isAnimating = false; // Desactiva la animación
-  }, 1000); // Duración de la animación
-}
+  // Método para limpiar campos
+  limpiarCampos() {
+    this.isAnimating = true; // Activa la animación
+    setTimeout(() => {
+      this.nombre = '';
+      this.apellido = '';
+      this.nivelEducacion = '';
+      this.fechaNacimiento = '';
+      this.isAnimating = false; // Desactiva la animación
+    }, 1000); // Duración de la animación
+  }
 
-// Método para mostrar alerta sobre el stock del producto
-async mostrarAlerta(producto: any) {
-  const alert = await this.alertController.create({
-    header: 'Estado del Juego',
-    message: producto.enStock ? 'El Juego está en stock' : 'El Juego no está en stock',
-    buttons: ['OK']
-  });
-  await alert.present();
-}
+  // Método para mostrar alerta sobre el stock del producto
+  async mostrarAlerta(producto: any) {
+    const alert = await this.alertController.create({
+      header: 'Estado del Juego',
+      message: producto.enStock ? 'El Juego está en stock' : 'El Juego no está en stock',
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
+
+  // Método para navegar a la página de cada categoría
+  navigateToCategory(category: string) {
+    this.navCtrl.navigateForward(`/${category}`);
+  }
 }

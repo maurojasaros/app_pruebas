@@ -93,3 +93,14 @@
 .mat-form-field-outline {
   border-color: #ffd700 !important; /* Borde color dorado */
 }
+
+// Asegúrate de que las cartas sean interactivas
+ion-card {
+  cursor: pointer; // Cambia el cursor a un puntero al pasar el mouse
+  transition: transform 0.2s; // Transición suave para el efecto de escala
+}
+
+// Efecto al pasar el mouse sobre la carta
+ion-card:hover {
+  transform: scale(1.05); // Aumenta el tamaño ligeramente al pasar el mouse
+}
