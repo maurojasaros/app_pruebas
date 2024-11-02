@@ -9,21 +9,11 @@ import { RegistroPageRoutingModule } from './registro-routing.module';
 import { RegistroPage } from './registro.page';
 import { LogoComponentComponent } from '../logo-component/logo-component.component';
 
-
-
-
-
-
 // Importa los módulos de Angular Material que necesitas
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-
-
-
-
-
 
 @NgModule({
   imports: [

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-terror',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TerrorPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private menu: MenuController
+  ) { }
 
   ngOnInit() {
   }
 
+  abrirMenu() {
+    this.menu.open('mainMenu');
+  }
 }

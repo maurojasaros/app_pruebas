@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { AventurasPageRoutingModule } from './aventuras-routing.module';
 
 import { AventurasPage } from './aventuras.page';
+import { LogoComponentComponent } from '../logo-component/logo-component.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AventurasPageRoutingModule
+    AventurasPageRoutingModule,
+    LogoComponentComponent,
   ],
   declarations: [AventurasPage]
 })

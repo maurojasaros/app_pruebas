@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { DeportesPageRoutingModule } from './deportes-routing.module';
 
 import { DeportesPage } from './deportes.page';
+import { LogoComponentComponent } from '../logo-component/logo-component.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    DeportesPageRoutingModule
+    DeportesPageRoutingModule,
+    LogoComponentComponent,
   ],
   declarations: [DeportesPage]
 })

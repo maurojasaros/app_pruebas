@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <app-logo-component></app-logo-component> <!-- Esto debería funcionar -->
+      <app-logo-component></app-logo-component>
     </ion-buttons>
     
     <ion-buttons slot="end">
@@ -23,23 +23,23 @@
         <p>Usuario: {{ email }}</p>
         <ion-item class="input-item">
           <ion-label position="floating">Nombre</ion-label>
-          <ion-input [(ngModel)]="nombre" [ngClass]="{'animate': isAnimating}" type="text"></ion-input>
+          <ion-input [(ngModel)]="nombre" [ngClass]="{'animate': isAnimating}" type="text" class="rounded-input"></ion-input>
         </ion-item>
 
         <ion-item class="input-item">
           <ion-label position="floating">Apellido</ion-label>
-          <ion-input [(ngModel)]="apellido" [ngClass]="{'animate': isAnimating}" type="text"></ion-input>
+          <ion-input [(ngModel)]="apellido" [ngClass]="{'animate': isAnimating}" type="text" class="rounded-input"></ion-input>
         </ion-item>
 
         <ion-item class="input-item">
           <ion-label position="floating">Nivel de Educación</ion-label>
-          <ion-input [(ngModel)]="nivelEducacion" type="text"></ion-input>
+          <ion-input [(ngModel)]="nivelEducacion" type="text" class="rounded-input"></ion-input>
         </ion-item>
 
         <ion-item class="input-item">
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Fecha de Nacimiento</mat-label>
-            <input matInput [matDatepicker]="picker" [(ngModel)]="fechaNacimiento" />
+            <input matInput [matDatepicker]="picker" [(ngModel)]="fechaNacimiento" class="rounded-input"/>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
@@ -51,9 +51,8 @@
     </ion-card-content>
   </ion-card>
 
-
   <!-- Card de la categoría de Terror -->
-  <ion-card (click)="navigateToCategory('terror')">
+  <ion-card (click)="navigateToCategory('terror')" class="rounded-card">
     <img src="../../assets/img/Terror.jpg" alt="Terror" />
     <ion-card-header>
       <ion-card-title>Terror</ion-card-title>
@@ -64,7 +63,7 @@
   </ion-card>
 
   <!-- Card de la categoría de Deportes -->
-  <ion-card (click)="navigateToCategory('deportes')">
+  <ion-card (click)="navigateToCategory('deportes')" class="rounded-card">
     <img src="../../assets/img/Deportes.jpg" alt="Deportes" />
     <ion-card-header>
       <ion-card-title>Deportes</ion-card-title>
@@ -75,7 +74,7 @@
   </ion-card>
 
   <!-- Card de la categoría de Aventuras -->
-  <ion-card (click)="navigateToCategory('aventuras')">
+  <ion-card (click)="navigateToCategory('aventuras')" class="rounded-card">
     <img src="../../assets/img/Aventuras.jpg" alt="Aventuras" />
     <ion-card-header>
       <ion-card-title>Aventuras</ion-card-title>
@@ -85,12 +84,11 @@
     </ion-card-content>
   </ion-card>
 
-
   <ion-list class="custom-list">
     <ion-list-header class="custom-list-header">
       <ion-label>Juegos Disponibles</ion-label>
     </ion-list-header>
-    <ion-item *ngFor="let producto of productos" (click)="mostrarAlerta(producto)" class="custom-list-item">
+    <ion-item *ngFor="let producto of productos" (click)="mostrarAlerta(producto)" class="custom-list-item rounded-item">
       <ion-label>
         <h2>{{ producto.nombre }}</h2>
         <p>Precio: ${{ producto.precio }}</p>

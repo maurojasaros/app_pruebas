@@ -2,7 +2,8 @@
 .custom-list {
   background-color: #f0f8ff; /* Color de fondo azul claro */
   padding: 10px;
-  border-radius: 8px;
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
 }
 
 .custom-list-header {
@@ -10,11 +11,12 @@
   color: white;
   font-weight: bold;
   padding: 10px;
+  border-radius: 8px; /* Bordes redondeados */
 }
 
 .custom-list-item {
   background-color: #e0f7fa; /* Color de fondo celeste */
-  border-radius: 5px;
+  border-radius: 10px; /* Bordes redondeados */
   margin-bottom: 10px;
   padding: 10px;
   transition: background-color 0.3s ease;
@@ -26,22 +28,34 @@
 
 /* Estilos para el ion-card */
 .custom-card {
-  background-color: #fff8dc; /* Fondo color amarillo claro */
-  border: 1px solid #ffd700; /* Borde color dorado */
-  border-radius: 10px;
-  padding: 10px; /* Añadido padding para asegurar espacio interno */
+  background-color: #007acc; /* Fondo azul para la tarjeta */
+  border-radius: 10px; /* Bordes redondeados */
+  padding: 15px; /* Añadido padding para asegurar espacio interno */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra suave para dar profundidad */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave para efectos de hover */
+  margin: 10px; /* Espacio entre tarjetas */
+  overflow: hidden; /* Evitar que el contenido sobresalga */
+  text-align: center; /* Centrar el contenido dentro de la tarjeta */
 }
 
 .custom-card-header {
-  background-color: #ffd700; /* Fondo dorado */
-  color: black;
+  color: white; /* Color del texto en el header */
   text-align: center;
   font-weight: bold;
+  padding: 10px; /* Espaciado interno */
+  font-size: 1.5em; /* Tamaño de fuente más grande */
 }
 
 .custom-card-content {
-  color: #333;
+  color: white; /* Cambié el color del texto a blanco para mejor visibilidad sobre el fondo azul */
   font-size: 16px;
+  padding: 10px; /* Espaciado interno */
+}
+
+/* Efecto al pasar el mouse sobre la carta */
+.custom-card:hover {
+  transform: translateY(-5px); /* Eleva la tarjeta un poco al pasar el mouse */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Aumenta la sombra al pasar el mouse */
 }
 
 /* Estilos para el label y el input de fecha */
@@ -84,6 +98,7 @@
 .mat-form-field {
   width: 100%;
   color: #333; /* Ajusta el color del texto si es necesario */
+  border-radius: 10px; /* Bordes redondeados */
 }
 
 .mat-datepicker-toggle {
@@ -94,13 +109,14 @@
   border-color: #ffd700 !important; /* Borde color dorado */
 }
 
-// Asegúrate de que las cartas sean interactivas
+/* Asegúrate de que las cartas sean interactivas */
 ion-card {
-  cursor: pointer; // Cambia el cursor a un puntero al pasar el mouse
-  transition: transform 0.2s; // Transición suave para el efecto de escala
+  cursor: pointer; /* Cambia el cursor a un puntero al pasar el mouse */
 }
 
-// Efecto al pasar el mouse sobre la carta
-ion-card:hover {
-  transform: scale(1.05); // Aumenta el tamaño ligeramente al pasar el mouse
+/* Estilo responsivo para las cards */
+@media (max-width: 768px) {
+  .custom-card {
+    margin: 5px; /* Reduce el margen en pantallas más pequeñas */
+  }
 }
