@@ -20,3 +20,5 @@ import { GameCardComponent } from '../game-card/game-card.component'; // Asegúr
   declarations: [DeportesPage, GameCardComponent] // Aquí declaramos el componente
 })
 export class DeportesPageModule {}
+
+

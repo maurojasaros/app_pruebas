@@ -44,6 +44,10 @@ const routes: Routes = [
   { path: 'aventuras', loadChildren: () => import('./aventuras/aventuras.module').then(m => m.AventurasPageModule) },
   { path: 'carrito', component: CarritoComponent },
   { path: 'favoritos', component: FavoritosComponent },
+  {
+    path: 'lista-juegos',
+    loadChildren: () => import('./lista-juegos/lista-juegos.module').then( m => m.ListaJuegosPageModule)
+  },
   
   
 ];
