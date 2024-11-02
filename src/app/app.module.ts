@@ -13,8 +13,10 @@ import { MatNativeDateModule } from '@angular/material/core';
 
 // Importa el componente independiente
 import { LogoComponentComponent } from './logo-component/logo-component.component';
+import { CarritoComponent } from './carrito/carrito.component';
 
 import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [AppComponent], // Solo AppComponent aquí
@@ -28,6 +30,7 @@ import { FormsModule } from '@angular/forms';
     MatNativeDateModule,
     LogoComponentComponent, // Agrega el componente aquí
     FormsModule,
+    CarritoComponent
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MenuController } from '@ionic/angular';
+import { CarritoComponent } from '../carrito/carrito.component'; // Ajusta la ruta según tu estructura de archivos
 
 @Component({
   selector: 'app-deportes',
@@ -7,6 +8,8 @@ import { MenuController } from '@ionic/angular';
   styleUrls: ['./deportes.page.scss'],
 })
 export class DeportesPage implements OnInit {
+  @ViewChild(CarritoComponent) carritoComponent!: CarritoComponent; // Obtener la referencia al componente del carrito
+
   // Array de juegos
   juegos: { titulo: string; precio: number; descripcion: string; imagen: string }[] = [
     {
@@ -33,6 +36,9 @@ export class DeportesPage implements OnInit {
   }
 
   agregarAlCarrito(juego: any) {
-    console.log(`Juego añadido al carrito: ${juego.titulo}`);
+    if (this.carritoComponent) {
+      this.carritoComponent.addToCart(juego); // Añadir el juego al carrito a través del componente
+      console.log(`Juego añadido al carrito: ${juego.titulo}`);
+    }
   }
 }
