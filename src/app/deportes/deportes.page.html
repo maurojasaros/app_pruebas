@@ -11,3 +11,18 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let juego of juegos">
+    <img [src]="juego.imagen" alt="{{ juego.titulo }}" style="width: 100%; height: auto;" />
+    <ion-card-header>
+      <ion-card-title>{{ juego.titulo }}</ion-card-title>
+      <ion-card-subtitle>${{ juego.precio }}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>{{ juego.descripcion }}</p>
+      <ion-button expand="full" color="primary" (click)="agregarAlCarrito(juego)">Añadir al Carrito</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
