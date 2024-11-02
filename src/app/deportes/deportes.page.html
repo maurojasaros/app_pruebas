@@ -14,7 +14,12 @@
 
 <ion-content>
   <div class="game-list">
-    <app-game-card *ngFor="let juego of juegos" [juego]="juego"></app-game-card>
+    <app-game-card 
+      *ngFor="let juego of juegos" 
+      [juego]="juego" 
+      (agregarAFavoritos)="agregarAFavoritos(juego)" 
+      (agregarAlCarrito)="agregarAlCarrito(juego)">
+    </app-game-card>
   </div>
 
   <ion-button expand="full" routerLink="/carrito" color="secondary">Ver Carrito</ion-button>

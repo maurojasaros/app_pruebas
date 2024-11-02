@@ -1,24 +1,23 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-game-card',
   templateUrl: './game-card.component.html',
   styleUrls: ['./game-card.component.scss'],
 })
-export class GameCardComponent implements OnInit {
-  @Input() juego!: { titulo: string; precio: number; descripcion: string; imagen: string }; // Define la propiedad de entrada
+export class GameCardComponent {
+  @Input() juego!: { titulo: string; precio: number; descripcion: string; imagen: string };
 
-  constructor() { }
+  @Output() agregarAFavoritos = new EventEmitter<void>();
+  @Output() agregarAlCarrito = new EventEmitter<void>(); // Nuevo EventEmitter para agregar al carrito
 
-  ngOnInit() {}
-
-  agregarAlCarrito() {
-    // Lógica para agregar al carrito
-    console.log(`Juego añadido al carrito: ${this.juego.titulo}`);
+  onAgregarAFavoritos() {
+    this.agregarAFavoritos.emit();
+    console.log(`Juego añadido a favoritos: ${this.juego.titulo}`);
   }
 
-  agregarAFavoritos() {
-    // Lógica para agregar a favoritos
-    console.log(`Juego añadido a favoritos: ${this.juego.titulo}`);
+  onAgregarAlCarrito() {
+    this.agregarAlCarrito.emit();
+    console.log(`Juego añadido al carrito: ${this.juego.titulo}`);
   }
 }
