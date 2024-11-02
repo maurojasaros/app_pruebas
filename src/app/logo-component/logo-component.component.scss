@@ -1,11 +1,25 @@
 .logo-container {
-    display: flex;
-    align-items: center;
-    font-weight: bold;
-    font-size: 1.2em;
-  
-    ion-icon {
-      font-size: 1.5em;
-      margin-right: 0.5em;
-    }
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.2em;
+  animation: bounce 1s infinite; // Aplicamos la animación aquí
+
+  ion-icon {
+    font-size: 1.5em;
+    margin-right: 0.5em;
   }
+}
+
+// Definimos la animación "bounce"
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0); // Sin desplazamiento
+  }
+  40% {
+    transform: translateY(-10px); // Desplazamiento hacia arriba
+  }
+  60% {
+    transform: translateY(-5px); // Desplazamiento menor
+  }
+}

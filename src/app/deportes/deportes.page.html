@@ -13,22 +13,10 @@
 </ion-header>
 
 <ion-content>
-  <ion-card *ngFor="let juego of juegos">
-    <img [src]="juego.imagen" alt="{{ juego.titulo }}" style="width: 100%; height: auto;" />
-    <ion-card-header>
-      <ion-card-title>{{ juego.titulo }}</ion-card-title>
-      <ion-card-subtitle>${{ juego.precio }}</ion-card-subtitle>
-    </ion-card-header>
-
-    <ion-card-content>
-      <p>{{ juego.descripcion }}</p>
-      <ion-button expand="full" color="primary" (click)="agregarAlCarrito(juego)">Añadir al Carrito</ion-button>
-      <ion-button expand="full" color="secondary" (click)="agregarAFavoritos(juego)">Añadir a Favoritos</ion-button>
-    </ion-card-content>
-  </ion-card>
+  <div class="game-list">
+    <app-game-card *ngFor="let juego of juegos" [juego]="juego"></app-game-card>
+  </div>
 
   <ion-button expand="full" routerLink="/carrito" color="secondary">Ver Carrito</ion-button>
   <ion-button expand="full" routerLink="/favoritos" color="tertiary">Ver Favoritos</ion-button>
-  
-  
 </ion-content>

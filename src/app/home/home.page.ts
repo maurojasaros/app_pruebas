@@ -16,7 +16,7 @@ export class HomePage {
   fechaNacimiento: string = '';
   isAnimating: boolean = false;
 
-  // Array de productos (drones)
+  // Array de productos (juegos)
   productos = [
     { nombre: 'Outlast', precio: 20.999, enStock: true },
     { nombre: 'Final Fantasy XII', precio: 30.999, enStock: false },

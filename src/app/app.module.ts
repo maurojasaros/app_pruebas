@@ -19,8 +19,11 @@ import { CarritoComponent } from './carrito/carrito.component';
 import { FormsModule } from '@angular/forms';
 
 
+
+
+
 @NgModule({
-  declarations: [AppComponent], // Solo AppComponent aquí
+  declarations: [AppComponent, ], // Solo AppComponent aquí
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
@@ -32,6 +35,7 @@ import { FormsModule } from '@angular/forms';
     LogoComponentComponent, // Agrega el componente aquí
     FormsModule,
     CarritoComponent,
+    
     
   ],
   providers: [
