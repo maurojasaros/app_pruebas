@@ -16,8 +16,9 @@ import { GameCardComponent } from '../game-card/game-card.component'; // Asegúr
     IonicModule,
     DeportesPageRoutingModule,
     LogoComponentComponent,
+    GameCardComponent
   ],
-  declarations: [DeportesPage, GameCardComponent] // Aquí declaramos el componente
+  declarations: [DeportesPage] // Aquí declaramos el componente
 })
 export class DeportesPageModule {}
 

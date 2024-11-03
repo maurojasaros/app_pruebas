@@ -37,4 +37,3 @@ export class ListaJuegosPage implements OnInit {
     );
   }
   }
-

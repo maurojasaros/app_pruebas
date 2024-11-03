@@ -2,11 +2,14 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { CarritoComponent } from '../carrito/carrito.component';
 import { FavoritosComponent } from '../favoritos/favoritos.component';
+import { GameCardComponent } from '../game-card/game-card.component';
+
 
 @Component({
   selector: 'app-deportes',
   templateUrl: './deportes.page.html',
   styleUrls: ['./deportes.page.scss'],
+  
 })
 export class DeportesPage implements OnInit {
   @ViewChild(CarritoComponent) carritoComponent!: CarritoComponent;

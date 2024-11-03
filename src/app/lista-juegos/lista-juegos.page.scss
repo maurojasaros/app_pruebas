@@ -29,3 +29,8 @@ h3 {
 p {
     margin: 4px 0; // Espacio entre los párrafos
 }
+.card-image {
+    width: 100%; /* Ajusta la imagen al ancho del contenedor */
+    height: auto; /* Mantiene la proporción original */
+    object-fit: cover; /* Alternativa: prueba con 'contain' para ver si mejora la visualización */
+  }
