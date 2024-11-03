@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MenuController } from '@ionic/angular';
 import { DeportesPage } from '../deportes/deportes.page';
 import { AventurasPage } from '../aventuras/aventuras.page';
 import { TerrorPage } from '../terror/terror.page';
+import { GameCardComponent } from '../game-card/game-card.component';
+import { CarritoComponent } from '../carrito/carrito.component';
+import { FavoritosComponent } from '../favoritos/favoritos.component';
 
 @Component({
   selector: 'app-lista-juegos',
@@ -9,10 +13,17 @@ import { TerrorPage } from '../terror/terror.page';
   styleUrls: ['./lista-juegos.page.scss'],
 })
 export class ListaJuegosPage implements OnInit {
+  @ViewChild(CarritoComponent) carritoComponent!: CarritoComponent;
+  @ViewChild(FavoritosComponent) favoritosComponent!: FavoritosComponent;
+
+
   juegos: { titulo: string; precio: number; descripcion: string; imagen: string }[] = [];
   searchTerm: string = '';
 
-  constructor() {}
+  favoritos: { titulo: string; precio: number; imagen: string }[] = [];
+  
+
+  constructor(private menu: MenuController) {}
 
   ngOnInit() {
     // Unir todos los juegos en un solo array
@@ -20,13 +31,39 @@ export class ListaJuegosPage implements OnInit {
       ...DeportesPage.juegos,
       ...AventurasPage.juegos,
       ...TerrorPage.juegos,
-      {
-        titulo: 'Super Mario Bros',
-        precio: 19900,
-        descripcion: 'Un clásico de plataformas.',
-        imagen: 'url-de-la-imagen' // Asegúrate de tener una URL válida para la imagen
-      }
+      
     ];
+
+    const storedFavorites = localStorage.getItem('favoritos');
+    if (storedFavorites) {
+      this.favoritos = JSON.parse(storedFavorites);
+    }
+  }
+  abrirMenu() {
+    this.menu.open('mainMenu');
+  }
+
+  agregarAlCarrito(juego: any) {
+    if (this.carritoComponent) {
+      this.carritoComponent.addToCart(juego);
+      console.log(`Juego añadido al carrito: ${juego.titulo}`);
+      localStorage.setItem('carrito', JSON.stringify(this.carritoComponent.items));
+    }
+  }
+
+  agregarAFavoritos(juego: any) {
+    const existe = this.favoritos.some(item => item.titulo === juego.titulo);
+    if (!existe) {
+      this.favoritos.push({
+        titulo: juego.titulo,
+        precio: juego.precio,
+        imagen: juego.imagen
+      });
+      console.log(`Juego añadido a favoritos: ${juego.titulo}`);
+      localStorage.setItem('favoritos', JSON.stringify(this.favoritos));
+    } else {
+      console.log(`El juego ya está en favoritos: ${juego.titulo}`);
+    }
   }
 
   filterJuegos() {

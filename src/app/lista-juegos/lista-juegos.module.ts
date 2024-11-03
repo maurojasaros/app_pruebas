@@ -13,7 +13,8 @@ import { MatFormFieldModule } from '@angular/material/form-field'; // Importa el
 import { MatInputModule } from '@angular/material/input'; // Importa el módulo
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
-
+import { GameCardComponent } from '../game-card/game-card.component';
+import { LogoComponentComponent } from '../logo-component/logo-component.component';
 
 
 @NgModule({
@@ -26,6 +27,8 @@ import { MatListModule } from '@angular/material/list';
     MatInputModule,
     MatToolbarModule,  // Importar MatToolbarModule
     MatListModule,
+    GameCardComponent,
+    LogoComponentComponent
   ],
   declarations: [ListaJuegosPage, SearchAndFilterComponent]
 })
