@@ -1,14 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-search-and-filter',
   templateUrl: './search-and-filter.component.html',
   styleUrls: ['./search-and-filter.component.scss'],
 })
-export class SearchAndFilterComponent  implements OnInit {
+export class SearchAndFilterComponent {
+  searchTerm: string = '';
+  @Output() searchTermChange: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor() { }
+  onSearchTermChange() {
+    this.searchTermChange.emit(this.searchTerm); // Emite el valor de búsqueda al componente padre
+  }
 
-  ngOnInit() {}
-
+  updateSearchTerm() {
+    this.searchTermChange.emit(this.searchTerm);
+  }
 }

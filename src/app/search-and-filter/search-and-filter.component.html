@@ -1,3 +1,4 @@
-<p>
-  search-and-filter works!
-</p>
+<mat-form-field appearance="fill">
+  <mat-label>Buscar juegos</mat-label>
+  <input matInput [(ngModel)]="searchTerm" (input)="updateSearchTerm()" placeholder="Ingresa el título o descripción...">
+</mat-form-field>

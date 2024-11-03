@@ -1,20 +1,19 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Lista de Juegos</ion-title>
-  </ion-toolbar>
-</ion-header>
+<mat-toolbar color="primary">
+  <span>Lista de Juegos</span>
+</mat-toolbar>
 
-<ion-content [fullscreen]="true">
-  <ion-list>
-    <ion-item *ngFor="let juego of juegos">
-      <ion-thumbnail slot="start">
-        <img [src]="juego.imagen" alt="{{ juego.titulo }}">
-      </ion-thumbnail>
-      <ion-label>
-        <h2>{{ juego.titulo }}</h2>
-        <p>Precio: {{ juego.precio }} CLP</p>
-        <p>{{ juego.descripcion }}</p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
-</ion-content>
+<app-search-and-filter (searchTermChange)="searchTerm = $event"></app-search-and-filter>
+
+<div class="juegos-container">
+  <mat-list>
+    <mat-list-item *ngFor="let juego of filterJuegos()">
+      <img mat-list-avatar [src]="juego.imagen" alt="{{ juego.titulo }}">
+      <div class="juego-info">
+        <h3 mat-line>{{ juego.titulo }}</h3>
+        <p mat-line>Precio: {{ juego.precio }} CLP</p>
+        <p mat-line>{{ juego.descripcion }}</p>
+      </div>
+    </mat-list-item>
+  </mat-list>
+</div>
+

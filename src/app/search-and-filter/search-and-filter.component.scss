@@ -1,0 +1,11 @@
+.search-container {
+    margin: 16px 0; // Espacio alrededor del campo de búsqueda
+    
+    input {
+      width: 100%; // Ocupa el ancho completo del contenedor
+      padding: 8px; // Espaciado interno
+      font-size: 16px; // Tamaño de fuente
+      border: 1px solid #ccc; // Borde
+      border-radius: 4px; // Bordes redondeados
+    }
+  }

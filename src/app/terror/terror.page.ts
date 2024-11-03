@@ -14,35 +14,15 @@ export class TerrorPage implements OnInit {
   @ViewChild(FavoritosComponent) favoritosComponent!: FavoritosComponent; // Obtener la referencia al componente de favoritos
 
   static juegos = [
-    {
-      titulo: 'Outlast',
-      precio: 19990,
-      descripcion: 'Outlast es un juego de terror en primera persona donde un periodista investiga un asilo psiquiátrico lleno de horrores.',
-      imagen: 'assets/img/Outlast.jpg'
-    },
-    {
-      titulo: 'Dead Space',
-      precio: 79990,
-      descripcion: 'Dead Space sigue a Isaac Clarke, un ingeniero que lucha contra criaturas monstruosas en una nave espacial infestada.',
-      imagen: 'assets/img/Dead Space.jpg'
-    }
+    {titulo: 'Outlast', precio: 19990, descripcion: 'Outlast es un juego de terror en primera persona donde un periodista investiga un asilo psiquiátrico lleno de horrores.', imagen: 'assets/img/Outlast.jpg'},
+    { titulo: 'Dead Space', precio: 79990, descripcion: 'Dead Space sigue a Isaac Clarke, un ingeniero que lucha contra criaturas monstruosas en una nave espacial infestada.', imagen: 'assets/img/Dead Space.jpg'}
     // otros juegos...
   ];
 
   // Array de juegos
   juegos: { titulo: string; precio: number; descripcion: string; imagen: string }[] = [
-    {
-      titulo: 'Outlast',
-      precio: 19990,
-      descripcion: 'Outlast es un juego de terror en primera persona donde un periodista investiga un asilo psiquiátrico lleno de horrores.',
-      imagen: 'assets/img/Outlast.jpg'
-    },
-    {
-      titulo: 'Dead Space',
-      precio: 79990,
-      descripcion: 'Dead Space sigue a Isaac Clarke, un ingeniero que lucha contra criaturas monstruosas en una nave espacial infestada.',
-      imagen: 'assets/img/Dead Space.jpg'
-    }
+    { titulo: 'Outlast', precio: 19990, descripcion: 'Outlast es un juego de terror en primera persona donde un periodista investiga un asilo psiquiátrico lleno de horrores.', imagen: 'assets/img/Outlast.jpg'},
+    { titulo: 'Dead Space', precio: 79990, descripcion: 'Dead Space sigue a Isaac Clarke, un ingeniero que lucha contra criaturas monstruosas en una nave espacial infestada.', imagen: 'assets/img/Dead Space.jpg'}
   ];
 
   // Lista de juegos favoritos

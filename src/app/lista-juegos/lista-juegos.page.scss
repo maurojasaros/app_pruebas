@@ -1,0 +1,31 @@
+.juegos-container {
+    padding: 16px; // Espacio alrededor del contenedor
+}
+  
+mat-list-item {
+    display: flex; // Flex para alinear la imagen y la información
+    align-items: center; // Centra verticalmente
+    margin-bottom: 16px; // Espaciado entre cada item
+    overflow: hidden; // Evita que el contenido se desborde
+}
+  
+img {
+    width: 80px; // Ajusta el tamaño de la imagen
+    height: auto; // Mantiene la proporción de la imagen
+    object-fit: contain; // Asegura que toda la imagen sea visible
+    margin-right: 16px; // Espacio entre la imagen y la información del juego
+}
+  
+.juego-info {
+    flex: 1; // Hace que el contenedor de info tome el espacio restante
+    overflow: hidden; // Evita que el texto se desborde
+}
+
+h3 {
+    font-size: 1.2em; // Aumenta el tamaño de la fuente para los títulos
+    margin: 0; // Elimina márgenes por defecto
+}
+
+p {
+    margin: 4px 0; // Espacio entre los párrafos
+}

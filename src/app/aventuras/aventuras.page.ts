@@ -14,29 +14,14 @@ export class AventurasPage implements OnInit {
 
   static juegos = [
     { titulo: 'Zelda: Breath of the Wild', precio: 60000, descripcion: 'Aventura épica', imagen: 'assets/img/The Legend of Zelda.jpg' },
-    {
-      titulo: 'Mario Bros',
-      precio: 29990,
-      descripcion: 'Rescata a la princesa junto a tus compañeros Luigi y Yoshi, enfretate a los enemigos y supera todas las adversidades.',
-      imagen: 'assets/img/Mario Bros.jpg'
-    },
+    {titulo: 'Mario Bros', precio: 29990, descripcion: 'Rescata a la princesa junto a tus compañeros Luigi y Yoshi, enfretate a los enemigos y supera todas las adversidades.', imagen: 'assets/img/Mario Bros.jpg'},
     // otros juegos...
   ];
 
   // Array de juegos
   juegos: { titulo: string; precio: number; descripcion: string; imagen: string }[] = [
-    {
-      titulo: 'Mario Bros',
-      precio: 29990,
-      descripcion: 'Rescata a la princesa junto a tus compañeros Luigi y Yoshi, enfretate a los enemigos y supera todas las adversidades.',
-      imagen: 'assets/img/Mario Bros.jpg'
-    },
-    {
-      titulo: 'The Legend of Zelda',
-      precio: 59990,
-      descripcion: 'Adentrate en Hirule y su entorno, enfrentate a distintos jefes y equipate bien para tu aventura. En esta ocasión puedes escalar!!.',
-      imagen: 'assets/img/The Legend of Zelda.jpg'
-    }
+    { titulo: 'Mario Bros', precio: 29990, descripcion: 'Rescata a la princesa junto a tus compañeros Luigi y Yoshi, enfretate a los enemigos y supera todas las adversidades.', imagen: 'assets/img/Mario Bros.jpg'},
+    {titulo: 'The Legend of Zelda', precio: 59990, descripcion: 'Adentrate en Hirule y su entorno, enfrentate a distintos jefes y equipate bien para tu aventura. En esta ocasión puedes escalar!!.', imagen: 'assets/img/The Legend of Zelda.jpg'}
   ];
 
   // Lista de juegos favoritos

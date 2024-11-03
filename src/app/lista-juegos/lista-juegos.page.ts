@@ -10,6 +10,7 @@ import { TerrorPage } from '../terror/terror.page';
 })
 export class ListaJuegosPage implements OnInit {
   juegos: { titulo: string; precio: number; descripcion: string; imagen: string }[] = [];
+  searchTerm: string = '';
 
   constructor() {}
 
@@ -18,9 +19,22 @@ export class ListaJuegosPage implements OnInit {
     this.juegos = [
       ...DeportesPage.juegos,
       ...AventurasPage.juegos,
-      ...TerrorPage.juegos
+      ...TerrorPage.juegos,
+      {
+        titulo: 'Super Mario Bros',
+        precio: 19900,
+        descripcion: 'Un clásico de plataformas.',
+        imagen: 'url-de-la-imagen' // Asegúrate de tener una URL válida para la imagen
+      }
     ];
-
-    console.log(this.juegos); // Muestra todos los juegos combinados en la consola
   }
-}
+
+  filterJuegos() {
+    // Filtra los juegos según el término de búsqueda
+    return this.juegos.filter(juego =>
+      juego.titulo.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      juego.descripcion.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+  }
+  }
+
