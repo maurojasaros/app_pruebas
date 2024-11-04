@@ -1,6 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon slot="icon-only" name="arrow-back"> Volver</ion-icon>
+      </ion-button>
       <app-logo-component></app-logo-component>
     </ion-buttons>
     
@@ -18,9 +21,14 @@
   <div class="game-list">
     <app-game-card 
       *ngFor="let juego of filterJuegos()" 
-      [juego]="juego" 
+      [juego]="juego"
+      (agregarAFavoritos)="agregarAFavoritos(juego)" 
+      (agregarAlCarrito)="agregarAlCarrito(juego)" 
       >
     </app-game-card>
   </div>
+
+  <ion-button expand="full" routerLink="/carrito" color="secondary">Ver Carrito</ion-button>
+  <ion-button expand="full" routerLink="/favoritos" color="tertiary">Ver Favoritos</ion-button>
 </ion-content>
 

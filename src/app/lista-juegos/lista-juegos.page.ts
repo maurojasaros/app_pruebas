@@ -6,6 +6,7 @@ import { TerrorPage } from '../terror/terror.page';
 import { GameCardComponent } from '../game-card/game-card.component';
 import { CarritoComponent } from '../carrito/carrito.component';
 import { FavoritosComponent } from '../favoritos/favoritos.component';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-lista-juegos',
@@ -23,8 +24,11 @@ export class ListaJuegosPage implements OnInit {
   favoritos: { titulo: string; precio: number; imagen: string }[] = [];
   
 
-  constructor(private menu: MenuController) {}
-
+  constructor(private menu: MenuController, private navController: NavController) {}
+  
+  goBack() {
+    this.navController.pop();
+  }
   ngOnInit() {
     // Unir todos los juegos en un solo array
     this.juegos = [
