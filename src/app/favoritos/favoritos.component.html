@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-card *ngFor="let juego of favoritos">
+  <ion-card *ngFor="let juego of favoritos" class="favorito-item">
     <img [src]="juego.imagen" alt="{{ juego.titulo }}" />
     <ion-card-header>
       <ion-card-title>{{ juego.titulo }}</ion-card-title>
