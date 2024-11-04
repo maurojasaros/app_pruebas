@@ -10,7 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { LogoComponentComponent } from '../logo-component/logo-component.component';
-
+import { GameCardComponent } from '../game-card/game-card.component';
 
 
 
@@ -25,6 +25,7 @@ import { LogoComponentComponent } from '../logo-component/logo-component.compone
     MatDatepickerModule,
     MatNativeDateModule,
     LogoComponentComponent,
+    GameCardComponent
     // MatMomentDateModule, // Descomentar si utilizas Moment.js
   ],
   declarations: [HomePage],

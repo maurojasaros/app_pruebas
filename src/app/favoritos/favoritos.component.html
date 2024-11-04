@@ -1,8 +1,20 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon slot="icon-only" name="arrow-back">Volver</ion-icon>
+        
+      </ion-button>
+      <app-logo-component></app-logo-component>
+    </ion-buttons>
+    
     <ion-title>Favoritos</ion-title>
+
     <ion-buttons slot="end">
       <ion-button (click)="limpiarFavoritos()">Limpiar Favoritos</ion-button>
+      <ion-button (click)="abrirMenu()" class="custom-menu-button">
+        <ion-icon name="layers-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>

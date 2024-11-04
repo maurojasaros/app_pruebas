@@ -16,6 +16,7 @@ import { NavController } from '@ionic/angular';
 export class ListaJuegosPage implements OnInit {
   @ViewChild(CarritoComponent) carritoComponent!: CarritoComponent;
   @ViewChild(FavoritosComponent) favoritosComponent!: FavoritosComponent;
+  
 
 
   juegos: { titulo: string; precio: number; descripcion: string; imagen: string }[] = [];
@@ -29,20 +30,36 @@ export class ListaJuegosPage implements OnInit {
   goBack() {
     this.navController.pop();
   }
+  
   ngOnInit() {
+    this.menu.close("mainMenu");
     // Unir todos los juegos en un solo array
     this.juegos = [
       ...DeportesPage.juegos,
       ...AventurasPage.juegos,
       ...TerrorPage.juegos,
       
+      
     ];
+
+    this.actualizarFavoritos();
 
     const storedFavorites = localStorage.getItem('favoritos');
     if (storedFavorites) {
       this.favoritos = JSON.parse(storedFavorites);
     }
   }
+
+  actualizarFavoritos() {
+    const storedFavorites = localStorage.getItem('favoritos');
+    if (storedFavorites) {
+        this.favoritos = JSON.parse(storedFavorites);
+    } else {
+        this.favoritos = []; // Asegúrate de limpiar la referencia si no hay favoritos
+    }
+  }
+
+  
   abrirMenu() {
     this.menu.open('mainMenu');
   }

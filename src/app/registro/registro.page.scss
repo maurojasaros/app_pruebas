@@ -1,0 +1,46 @@
+/* Registro Page Styles */
+ion-content {
+    --background: #f8f9fa; // Color de fondo suave
+  }
+  
+  .custom-card {
+    background-color: #ffffff; // Fondo blanco para el card
+    border-radius: 10px; // Bordes redondeados
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); // Sombra sutil
+    margin: 16px; // Margen alrededor del card
+  }
+  
+  .custom-card-header {
+    background-color: #007bff; // Color de fondo azul
+    color: #ffffff; // Color del texto blanco
+    border-top-left-radius: 10px; // Bordes redondeados en la parte superior
+    border-top-right-radius: 10px; // Bordes redondeados en la parte superior
+    padding: 16px; // Espacio interno
+  }
+  
+  .custom-card-title {
+    font-size: 24px; // Tamaño de fuente más grande
+    font-weight: bold; // Negrita
+  }
+  
+  .input-item {
+    margin-bottom: 16px; // Espacio entre cada item
+  }
+  
+  .full-width {
+    width: 100%; // Asegura que el campo de fecha ocupe todo el ancho
+  }
+  
+  ion-button {
+    margin-top: 12px; // Espacio entre los botones
+    border-radius: 20px; // Bordes redondeados en los botones
+  }
+  
+  .clear-button {
+    background-color: #f44336; // Color de fondo rojo
+    color: white; // Color del texto blanco
+  }
+  
+  .clear-button:hover {
+    background-color: #d32f2f; // Color más oscuro al pasar el mouse
+  }

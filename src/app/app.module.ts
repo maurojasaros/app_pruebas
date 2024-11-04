@@ -23,6 +23,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 
 
+
 @NgModule({
   declarations: [AppComponent ], // Solo AppComponent aquí
   imports: [

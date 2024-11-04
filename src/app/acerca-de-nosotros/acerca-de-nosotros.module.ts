@@ -4,21 +4,19 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { TerrorPageRoutingModule } from './terror-routing.module';
+import { AcercaDeNosotrosPageRoutingModule } from './acerca-de-nosotros-routing.module';
 
-import { TerrorPage } from './terror.page';
+import { AcercaDeNosotrosPage } from './acerca-de-nosotros.page';
 import { LogoComponentComponent } from '../logo-component/logo-component.component';
-import { GameCardComponent } from '../game-card/game-card.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    TerrorPageRoutingModule,
-    LogoComponentComponent,
-    GameCardComponent
+    AcercaDeNosotrosPageRoutingModule,
+    LogoComponentComponent
   ],
-  declarations: [TerrorPage]
+  declarations: [AcercaDeNosotrosPage]
 })
-export class TerrorPageModule {}
+export class AcercaDeNosotrosPageModule {}

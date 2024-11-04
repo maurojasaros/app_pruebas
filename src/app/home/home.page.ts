@@ -16,6 +16,14 @@ export class HomePage {
   fechaNacimiento: string = '';
   isAnimating: boolean = false;
 
+  // Array de juegos
+  juegos: { titulo: string; precio: number; descripcion: string; imagen: string; ruta?: string }[] = [
+    { titulo: 'Terror', precio:1 , descripcion: 'Sumérgete en la oscuridad con los juegos de terror, donde cada susurro y sombra puede esconder el peligro. Prepárate para un viaje escalofriante que desafiará tus nervios y pondrá a prueba tu instinto de supervivencia en escenarios aterradores.', imagen: 'assets/img/Terror.jpg', ruta: '/terror'},
+    { titulo: 'Deportes', precio: 2, descripcion: 'Los juegos de deportes te permiten sentir la emoción de la competencia y la gloria de la victoria sin salir de casa. Desde driblar en la cancha hasta hacer un gol decisivo, cada partido es una oportunidad para demostrar tus habilidades y llevar a tu equipo a la cima.', imagen: 'assets/img/Deportes.jpg', ruta: '/deportes'},
+    { titulo: 'Aventuras', precio: 3, descripcion: 'Los juegos de aventura son un pasaporte a mundos extraordinarios donde la curiosidad es tu mejor aliada. Cada paso te lleva a descubrir misterios, resolver acertijos intrigantes y vivir historias emocionantes que te atraparán desde el primer momento.', imagen: 'assets/img/Aventuras.jpg', ruta: '/aventuras'},
+  ];
+
+  
   // Array de productos (juegos)
   productos = [
     { nombre: 'Outlast', precio: 20.999, enStock: true },
@@ -78,6 +86,11 @@ export class HomePage {
 
   // Método para navegar a la página de cada categoría
   navigateToCategory(category: string) {
-    this.navCtrl.navigateForward(`/${category}`);
+    if (category) {
+      this.navCtrl.navigateForward(`/${category}`);
+    } else {
+      // Maneja el caso en que category es undefined
+      console.warn('La categoría no está definida');
+    }
   }
 }

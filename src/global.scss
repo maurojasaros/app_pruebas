@@ -51,3 +51,10 @@ ion-toolbar {
     // Asegúrate de que el color del icono sea visible
     --ion-color: rgb(155, 32, 32); // Esto afectará a todos los elementos que usen el color primario
 }
+ion-button {
+    transition: background-color 0.3s, transform 0.3s;
+  
+    &:hover {
+      transform: scale(1.05); // Efecto de aumento al pasar el mouse
+    }
+  }

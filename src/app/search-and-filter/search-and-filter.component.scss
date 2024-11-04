@@ -1,11 +1,33 @@
 .search-container {
-    margin: 16px 0; // Espacio alrededor del campo de búsqueda
-    
-    input {
-      width: 100%; // Ocupa el ancho completo del contenedor
-      padding: 8px; // Espaciado interno
-      font-size: 16px; // Tamaño de fuente
-      border: 1px solid #ccc; // Borde
-      border-radius: 4px; // Bordes redondeados
+  display: flex; // Usa flexbox para centrar el contenido
+  justify-content: center; // Centra horizontalmente
+  align-items: center; // Centra verticalmente
+  margin: 16px 0; // Espacio alrededor del contenedor
+  width: 100%; // Asegura que el contenedor ocupe el 100% del ancho
+  height: 44px; // Mantiene una altura fija para el contenedor
+
+  mat-form-field {
+    width: 100%; // Asegura que el campo de formulario ocupe todo el ancho del contenedor
+    max-width: 500px; // Ajusta según sea necesario para el ancho máximo deseado
+
+    .mat-form-field-underline {
+      display: none; // Elimina la línea debajo del campo
+    }
+
+    .mat-form-field-outline {
+      display: none; // Elimina el borde alrededor del campo
+    }
+
+    .mat-form-field-label {
+      color: transparent; // Hace que la etiqueta sea transparente si deseas eliminarla completamente
     }
   }
+  
+  input {
+    padding: 8px; // Espaciado interno
+    font-size: 16px; // Tamaño de fuente
+    border: none; // Elimina el borde
+    outline: none; // Elimina el borde de enfoque
+    width: 100%; // Asegura que el input ocupe todo el ancho del campo de formulario
+  }
+}

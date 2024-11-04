@@ -13,86 +13,22 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card class="custom-card">
-    <ion-card-header class="custom-card-header">
-      <ion-card-title>Detalles de Usuario</ion-card-title>
-    </ion-card-header>
+  <!-- Imagen de usuario y mensaje de bienvenida -->
+  <div class="user-info">
+    <img src="../../assets/img/avatar.png" alt="User Avatar" class="user-avatar" />
+    <h2><strong>Bienvenido/a, {{ email }}</strong></h2>
+  </div>
 
-    <ion-card-content class="custom-card-content">
-      <div id="user">
-        <p>Usuario: {{ email }}</p>
-        <ion-item class="input-item">
-          <ion-label position="floating">Nombre</ion-label>
-          <ion-input [(ngModel)]="nombre" [ngClass]="{'animate': isAnimating}" type="text" class="rounded-input"></ion-input>
-        </ion-item>
+  <h2 class="category-title">Categorías de Juegos</h2> 
 
-        <ion-item class="input-item">
-          <ion-label position="floating">Apellido</ion-label>
-          <ion-input [(ngModel)]="apellido" [ngClass]="{'animate': isAnimating}" type="text" class="rounded-input"></ion-input>
-        </ion-item>
-
-        <ion-item class="input-item">
-          <ion-label position="floating">Nivel de Educación</ion-label>
-          <ion-input [(ngModel)]="nivelEducacion" type="text" class="rounded-input"></ion-input>
-        </ion-item>
-
-        <ion-item class="input-item">
-          <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Fecha de Nacimiento</mat-label>
-            <input matInput [matDatepicker]="picker" [(ngModel)]="fechaNacimiento" class="rounded-input"/>
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-        </ion-item>
-
-        <ion-button expand="full" (click)="mostrarInformacion()">Mostrar</ion-button>
-        <ion-button expand="full" (click)="limpiarCampos()" class="clear-button">Limpiar</ion-button>
-      </div>
-    </ion-card-content>
-  </ion-card>
-
-  <!-- Card de la categoría de Terror -->
-  <ion-card (click)="navigateToCategory('terror')" class="rounded-card">
-    <img src="../../assets/img/Terror.jpg" alt="Terror" />
-    <ion-card-header>
-      <ion-card-title>Terror</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      Vive la emoción de los juegos de terror y enfréntate a tus peores miedos.
-    </ion-card-content>
-  </ion-card>
-
-  <!-- Card de la categoría de Deportes -->
-  <ion-card (click)="navigateToCategory('deportes')" class="rounded-card">
-    <img src="../../assets/img/Deportes.jpg" alt="Deportes" />
-    <ion-card-header>
-      <ion-card-title>Deportes</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      Disfruta de los mejores juegos de deportes y desafía a tus amigos.
-    </ion-card-content>
-  </ion-card>
-
-  <!-- Card de la categoría de Aventuras -->
-  <ion-card (click)="navigateToCategory('aventuras')" class="rounded-card">
-    <img src="../../assets/img/Aventuras.jpg" alt="Aventuras" />
-    <ion-card-header>
-      <ion-card-title>Aventuras</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      Embárcate en grandes aventuras y descubre mundos fantásticos.
-    </ion-card-content>
-  </ion-card>
-
-  <ion-list class="custom-list">
-    <ion-list-header class="custom-list-header">
-      <ion-label>Juegos Disponibles</ion-label>
-    </ion-list-header>
-    <ion-item *ngFor="let producto of productos" (click)="mostrarAlerta(producto)" class="custom-list-item rounded-item">
-      <ion-label>
-        <h2>{{ producto.nombre }}</h2>
-        <p>Precio: ${{ producto.precio }}</p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
+  <div class="game-list">
+    <app-game-card 
+      *ngFor="let juego of juegos" 
+      [juego]="juego" 
+      [mostrarPrecio]="false"
+      [redireccionar]="true"
+      [mostrarBotones]="false"
+      [rutaRedireccion]="juego.ruta">
+    </app-game-card>
+  </div>
 </ion-content>

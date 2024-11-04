@@ -19,3 +19,16 @@
       transform: scale(1.05);
     }
   }
+  .game-title {
+    text-align: center; /* Centra el título */
+    margin: 0; /* Elimina el margen predeterminado */
+}
+
+.game-price {
+    text-align: center; /* Centra el precio */
+    margin: 0; /* Elimina el margen predeterminado */
+}
+  .game-description {
+    text-align: justify; /* Justifica el texto */
+    margin: 10px 0; /* Agrega margen para separar el texto de otros elementos */
+}

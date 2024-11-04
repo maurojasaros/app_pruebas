@@ -39,15 +39,18 @@ const routes: Routes = [
     path: 'aventuras',
     loadChildren: () => import('./aventuras/aventuras.module').then( m => m.AventurasPageModule)
   },
-  { path: 'terror', loadChildren: () => import('./terror/terror.module').then(m => m.TerrorPageModule) },
-  { path: 'deportes', loadChildren: () => import('./deportes/deportes.module').then(m => m.DeportesPageModule) },
-  { path: 'aventuras', loadChildren: () => import('./aventuras/aventuras.module').then(m => m.AventurasPageModule) },
+  
   { path: 'carrito', component: CarritoComponent },
   { path: 'favoritos', component: FavoritosComponent },
   {
     path: 'lista-juegos',
     loadChildren: () => import('./lista-juegos/lista-juegos.module').then( m => m.ListaJuegosPageModule)
   },
+  {
+    path: 'acerca-de-nosotros',
+    loadChildren: () => import('./acerca-de-nosotros/acerca-de-nosotros.module').then( m => m.AcercaDeNosotrosPageModule)
+  },
+  { path: 'acerca-de-nosotros', loadChildren: () => import('./acerca-de-nosotros/acerca-de-nosotros.module').then(m => m.AcercaDeNosotrosPageModule) },
   
   
 ];

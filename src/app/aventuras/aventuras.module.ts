@@ -8,6 +8,7 @@ import { AventurasPageRoutingModule } from './aventuras-routing.module';
 
 import { AventurasPage } from './aventuras.page';
 import { LogoComponentComponent } from '../logo-component/logo-component.component';
+import { GameCardComponent } from '../game-card/game-card.component';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { LogoComponentComponent } from '../logo-component/logo-component.compone
     IonicModule,
     AventurasPageRoutingModule,
     LogoComponentComponent,
+    GameCardComponent
   ],
   declarations: [AventurasPage]
 })
