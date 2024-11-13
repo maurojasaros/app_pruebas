@@ -4,7 +4,6 @@ import { NavController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { AuthServiceService } from '../services/auth-service.service';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -48,7 +47,7 @@ export class LoginPage implements OnInit {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Expresión regular básica para validar email
     return emailRegex.test(email);
   }
-  
+
   // Método para el login
   async login() {
     // Verificar que el campo de correo no esté vacío

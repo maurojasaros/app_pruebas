@@ -17,11 +17,9 @@ export class RegistroPage {
   direccion: string = '';
   calle: string = '';
   ciudad: string = '';
-  //fechaNacimiento: string = '';
-  isAnimating: boolean = false;
   selectedDate: any = '';
   password: string = '';
-  
+  isAnimating: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -34,7 +32,7 @@ export class RegistroPage {
     this.menu.close("mainMenu");
     // Obtener los parámetros de la URL
     this.route.queryParams.subscribe(params => {
-      this.email = params['email']; 
+      this.email = params['email']; // Asumimos que el email es pasado desde el login
     });
   }
 
@@ -84,34 +82,28 @@ export class RegistroPage {
     await alert.present();
   }
 
-
   formatDate(date: any): string {
     const options: Intl.DateTimeFormatOptions = {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
-      // Puedes añadir más opciones si lo deseas
     };
     return new Date(date).toLocaleDateString('es-CL', options); // Formato de Chile
   }
 
-
   // Método para calcular la edad
   calcularEdad(fechaNacimiento: Date): number {
-  const hoy = new Date();
-  let edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
-  const mesNacimiento = fechaNacimiento.getMonth();
-  const mesActual = hoy.getMonth();
+    const hoy = new Date();
+    let edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
+    const mesNacimiento = fechaNacimiento.getMonth();
+    const mesActual = hoy.getMonth();
 
-  // Si el cumpleaños de este año no ha pasado aún, restamos un año
-  if (mesNacimiento > mesActual || (mesNacimiento === mesActual && fechaNacimiento.getDate() > hoy.getDate())) {
-    edad--;
+    if (mesNacimiento > mesActual || (mesNacimiento === mesActual && fechaNacimiento.getDate() > hoy.getDate())) {
+      edad--;
+    }
+
+    return edad;
   }
-  
-  return edad;
-}
-
-
 
   // Método para guardar datos
   guardar() {
@@ -165,6 +157,7 @@ export class RegistroPage {
     ).then((success) => {
       if (success) {
         this.presentAlert('Registro exitoso');
+        // Al registrar con éxito, puedes redirigir al login para que el usuario inicie sesión
       } else {
         this.presentAlert('Error al registrar usuario. Por favor, intenta de nuevo.');
       }

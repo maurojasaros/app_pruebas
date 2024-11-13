@@ -10,7 +10,7 @@ export class AuthServiceService {
   constructor(private sqlite: SQLite) {
     this.initializeDatabase();
   }
-  
+
   async initializeDatabase() {
     try {
       this.dbInstance = await this.sqlite.create({
@@ -26,7 +26,7 @@ export class AuthServiceService {
   async createTables() {
     await this.dbInstance.executeSql(
       `CREATE TABLE IF NOT EXISTS sesion_data(
-        id INTEGER PRIMARY KEY AUTOINCREMENT,  -- Puedes agregar un ID para el registro
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
         nombre TEXT,
         apellido TEXT,
         email TEXT UNIQUE,
@@ -36,7 +36,7 @@ export class AuthServiceService {
         calle TEXT,
         ciudad TEXT,
         fecha_nacimiento TEXT,
-        active INTEGER DEFAULT 1  -- Añadir valor por defecto a "active" si se requiere
+        active INTEGER DEFAULT 1  -- Valor por defecto para "active"
       )`,
       []
     );
@@ -72,9 +72,10 @@ export class AuthServiceService {
         `SELECT * FROM sesion_data WHERE email = ? AND password = ?`,
         [email, password]
       );
-  
+
       if (result.rows.length > 0) {
-        await this.updateSessionStatus(email, 1); // Cambia el estado de active a 1
+        // Si la validación es exitosa, se marca la sesión como activa
+        await this.updateSessionStatus(email, 1); // Cambiar el estado a activo
         return true;
       }
       return false;
