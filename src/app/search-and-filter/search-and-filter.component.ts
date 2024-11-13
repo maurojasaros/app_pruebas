@@ -10,7 +10,7 @@ export class SearchAndFilterComponent {
   @Output() searchTermChange: EventEmitter<string> = new EventEmitter<string>();
 
   onSearchTermChange() {
-    this.searchTermChange.emit(this.searchTerm); // Emite el valor de búsqueda al componente padre
+    this.searchTermChange.emit(this.searchTerm); 
   }
 
   updateSearchTerm() {

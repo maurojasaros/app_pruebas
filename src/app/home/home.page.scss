@@ -7,8 +7,8 @@
   margin-bottom: 16px;
 
   .user-avatar {
-    width: 60px; /* Ajusta según necesites */
-    height: 60px; /* Ajusta según necesites */
+    width: 60px; 
+    height: 60px; 
     border-radius: 50%;
     margin-right: 16px;
   }
@@ -18,30 +18,25 @@
   }
 
   span {
-    font-size: 14px;
+    font-size: 1rem;
     color: #777;
   }
 }
 
 .game-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center; // Alinea los elementos al centro
-    padding: 16px; // Espacio alrededor del contenido
+  display: flex;
+  flex-direction: column;
+  align-items: center; // Alinea los elementos al centro
+  padding: 16px; // Espacio alrededor del contenido
 
-    app-game-card {
-      margin-bottom: 16px; // Espacio entre las tarjetas de juego
-      width: 100%; // Asegúrate de que las tarjetas ocupen todo el ancho disponible
-      max-width: 400px; // Ancho máximo para tarjetas grandes
-      border-radius: 10px; // Bordes redondeados
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); // Sombra para darle profundidad
-    }
-}
+  app-game-card {
+    margin-bottom: 16px; // Espacio entre las tarjetas de juego
+    width: 100%; 
+    max-width: 400px; // Ancho máximo para tarjetas grandes
+    border-radius: 10px; // Bordes redondeados
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); // Sombra para darle profundidad
 
-.category-title {
-    text-align: center; // Centra el texto
-    font-size: 24px; // Tamaño de la fuente
-    font-weight: bold; // Negrita
-    margin: 16px 0; // Espacio arriba y abajo
-    color: #4CAF50; // Color que desees para el texto
+    // Si hay un error de mezcla de unidades, asegúrate de que el padding sea apropiado para todos los elementos
+    padding: 10px;  // Añadido para mayor espacio interno si es necesario
+  }
 }

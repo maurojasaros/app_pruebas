@@ -33,7 +33,7 @@ export class ListaJuegosPage implements OnInit {
   
   ngOnInit() {
     this.menu.close("mainMenu");
-    // Unir todos los juegos en un solo array
+    
     this.juegos = [
       ...DeportesPage.juegos,
       ...AventurasPage.juegos,
@@ -55,7 +55,7 @@ export class ListaJuegosPage implements OnInit {
     if (storedFavorites) {
         this.favoritos = JSON.parse(storedFavorites);
     } else {
-        this.favoritos = []; // Asegúrate de limpiar la referencia si no hay favoritos
+        this.favoritos = []; 
     }
   }
 

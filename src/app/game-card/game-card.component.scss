@@ -1,34 +1,36 @@
 .game-item {
-    transition: transform 0.3s ease; /* Tiempo de la transición */
-    border: 1px solid #ccc; /* Ejemplo de borde */
-    border-radius: 8px; /* Bordes redondeados */
-    padding: 10px; /* Espaciado interno */
-    margin: 10px; /* Espaciado externo */
-    background-color: #fff; /* Color de fondo */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
-    
-    &:hover {
-      transform: scale(1.05); /* Aumenta el tamaño al pasar el mouse */
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Aumenta la sombra */
-    }
+  transition: transform 0.3s ease; /* Tiempo de la transición */
+  border: 1px solid #ccc; /* Ejemplo de borde */
+  border-radius: 8px; /* Bordes redondeados */
+  padding: 10px; /* Espaciado interno */
+  margin: 10px; /* Espaciado externo */
+  background-color: #fff; /* Color de fondo */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+  
+  &:hover {
+    transform: scale(1.05); /* Aumenta el tamaño al pasar el mouse */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Aumenta la sombra */
   }
+}
 
-  ion-card {
-    transition: transform 0.3s ease-in-out;
-    &:hover {
-      transform: scale(1.05);
-    }
+ion-card {
+  transition: transform 0.3s ease-in-out;
+  &:hover {
+    transform: scale(1.05);
   }
-  .game-title {
-    text-align: center; /* Centra el título */
-    margin: 0; /* Elimina el margen predeterminado */
+}
+
+.game-title {
+  text-align: center; /* Centra el título */
+  margin: 0; /* Elimina el margen predeterminado */
 }
 
 .game-price {
-    text-align: center; /* Centra el precio */
-    margin: 0; /* Elimina el margen predeterminado */
+  text-align: center; /* Centra el precio */
+  margin: 0; /* Elimina el margen predeterminado */
 }
-  .game-description {
-    text-align: justify; /* Justifica el texto */
-    margin: 10px 0; /* Agrega margen para separar el texto de otros elementos */
+
+.game-description {
+  text-align: justify; /* Justifica el texto */
+  margin: 10px 0; /* Agrega margen para separar el texto de otros elementos */
 }

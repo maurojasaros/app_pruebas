@@ -1,46 +1,45 @@
 .search-container {
-    display: flex;
-    justify-content: center; // Centra horizontalmente
-    margin: 16px 0; // Espaciado arriba y abajo
-    padding: 0 16px; // Espaciado lateral
-    width: 100%; // Asegúrate de que el contenedor ocupe todo el ancho disponible
-  
-    app-search-and-filter {
-      width: 100%; // Toma todo el ancho disponible
-      max-width: 500px; // Ancho máximo para el buscador
-      border-radius: 5px; // Bordes redondeados
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); // Sombra sutil para profundidad
-      padding: 8px; // Agrega un poco de relleno interno para que se vea mejor
-    }
+  display: flex;
+  justify-content: center; // Centra horizontalmente
+  margin: 16px 0; // Espaciado arriba y abajo
+  padding: 0 16px; // Espaciado lateral
+  width: 100%; 
+
+  app-search-and-filter {
+    width: 100%; // Toma todo el ancho disponible
+    max-width: 500px; // Ancho máximo para el buscador
+    border-radius: 5px; // Bordes redondeados
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); // Sombra sutil para profundidad
+    padding: 8px; 
   }
-  
-  .game-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center; // Alinea los elementos al centro
-    padding: 16px; // Espacio alrededor del contenido
-  
-    // Asegúrate de que las tarjetas tengan un ancho adecuado
-    app-game-card {
-      margin-bottom: 16px; // Espacio entre las tarjetas de juego
-      width: 100%; // Asegúrate de que las tarjetas ocupen todo el ancho disponible
-      max-width: 400px; // Ancho máximo para tarjetas grandes
-      border-radius: 10px; // Bordes redondeados
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); // Sombra para darle profundidad
-    }
+}
+
+.game-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center; // Alinea los elementos al centro
+  padding: 16px; // Espacio alrededor del contenido
+
+  app-game-card {
+    margin-bottom: 16px; // Espacio entre las tarjetas de juego
+    width: 100%; 
+    max-width: 400px; // Ancho máximo para tarjetas grandes
+    border-radius: 10px; // Bordes redondeados
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); // Sombra para darle profundidad
   }
-  
-  .category-title {
-    text-align: center; // Centra el texto
-    font-size: 24px; // Tamaño de la fuente
-    font-weight: bold; // Negrita
-    margin: 16px 0; // Espacio arriba y abajo
-    color: #4CAF50; // Color que desees para el texto
-  }
-  
-  .button-container {
-    display: flex; // Alinea los botones en fila
-    flex-direction: column; // Alinea los botones en columna
-    gap: 8px; // Espacio entre los botones
-    padding: 16px; // Espacio alrededor de los botones
-  }
+}
+
+.category-title {
+  text-align: center; // Centra el texto
+  font-size: 24px; // Tamaño de la fuente
+  font-weight: bold; // Negrita
+  margin: 16px 0; // Espacio arriba y abajo
+  color: #4CAF50;
+}
+
+.button-container {
+  display: flex; // Alinea los botones en fila
+  flex-direction: column; // Alinea los botones en columna
+  gap: 8px; // Espacio entre los botones
+  padding: 16px; // Espacio alrededor de los botones
+}

@@ -7,7 +7,7 @@ import { DeportesPageRoutingModule } from './deportes-routing.module';
 
 import { DeportesPage } from './deportes.page';
 import { LogoComponentComponent } from '../logo-component/logo-component.component';
-import { GameCardComponent } from '../game-card/game-card.component'; // Asegúrate de importar el componente aquí
+import { GameCardComponent } from '../game-card/game-card.component'; 
 
 @NgModule({
   imports: [
@@ -18,7 +18,7 @@ import { GameCardComponent } from '../game-card/game-card.component'; // Asegúr
     LogoComponentComponent,
     GameCardComponent
   ],
-  declarations: [DeportesPage] // Aquí declaramos el componente
+  declarations: [DeportesPage] 
 })
 export class DeportesPageModule {}
 

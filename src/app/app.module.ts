@@ -11,7 +11,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 
-// Importa el componente independiente
+
 import { LogoComponentComponent } from './logo-component/logo-component.component';
 import { CarritoComponent } from './carrito/carrito.component';
 
@@ -25,7 +25,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 
 @NgModule({
-  declarations: [AppComponent ], // Solo AppComponent aquí
+  declarations: [AppComponent ], 
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
@@ -34,7 +34,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatDatepickerModule,
     MatInputModule,
     MatNativeDateModule,
-    LogoComponentComponent, // Agrega el componente aquí
+    LogoComponentComponent, 
     FormsModule,
     CarritoComponent,
     MatListModule,

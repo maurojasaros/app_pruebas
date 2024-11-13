@@ -26,7 +26,7 @@ import { GameCardComponent } from '../game-card/game-card.component';
     MatNativeDateModule,
     LogoComponentComponent,
     GameCardComponent
-    // MatMomentDateModule, // Descomentar si utilizas Moment.js
+    
   ],
   declarations: [HomePage],
 })

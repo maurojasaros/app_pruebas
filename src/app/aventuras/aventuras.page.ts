@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { NavController } from '@ionic/angular';
- // Ajusta la ruta según tu estructura de archivos
+ 
 
 
 @Component({
@@ -15,7 +15,7 @@ export class AventurasPage implements OnInit {
   static juegos = [
     { titulo: 'Zelda: Breath of the Wild', precio: 60000, descripcion: 'Aventura épica', imagen: 'assets/img/The Legend of Zelda.jpg' },
     {titulo: 'Mario Bros', precio: 29990, descripcion: 'Rescata a la princesa junto a tus compañeros Luigi y Yoshi, enfretate a los enemigos y supera todas las adversidades.', imagen: 'assets/img/Mario Bros.jpg'},
-    // otros juegos...
+    
   ];
 
   // Array de juegos

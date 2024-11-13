@@ -16,7 +16,7 @@ export class DeportesPage implements OnInit {
   static juegos = [
     { titulo: 'FIFA 23', precio: 40000, descripcion: 'Fútbol realista', imagen: 'assets/img/Fifa 2023.jpg' },
     { titulo: 'UFC', precio: 39990, descripcion: 'Experimenta las artes marciales mixtas con UFC.', imagen: 'assets/img/ufc.jpg' }
-    // otros juegos...
+    
   ];
 
   juegos: { titulo: string; precio: number; descripcion: string; imagen: string }[] = [

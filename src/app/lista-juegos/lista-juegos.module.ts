@@ -8,9 +8,9 @@ import { ListaJuegosPageRoutingModule } from './lista-juegos-routing.module';
 
 import { ListaJuegosPage } from './lista-juegos.page';
 
-import { SearchAndFilterComponent } from '../search-and-filter/search-and-filter.component'; // Importar tu componente de búsqueda y filtro
-import { MatFormFieldModule } from '@angular/material/form-field'; // Importa el módulo
-import { MatInputModule } from '@angular/material/input'; // Importa el módulo
+import { SearchAndFilterComponent } from '../search-and-filter/search-and-filter.component'; 
+import { MatFormFieldModule } from '@angular/material/form-field'; 
+import { MatInputModule } from '@angular/material/input'; 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { GameCardComponent } from '../game-card/game-card.component';
@@ -25,7 +25,7 @@ import { LogoComponentComponent } from '../logo-component/logo-component.compone
     ListaJuegosPageRoutingModule,
     MatFormFieldModule,
     MatInputModule,
-    MatToolbarModule,  // Importar MatToolbarModule
+    MatToolbarModule,  
     MatListModule,
     GameCardComponent,
     LogoComponentComponent
