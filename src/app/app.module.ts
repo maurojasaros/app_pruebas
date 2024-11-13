@@ -19,6 +19,7 @@ import { CarritoComponent } from './carrito/carrito.component';
 import { FormsModule } from '@angular/forms';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { SQLite } from '@awesome-cordova-plugins/sqlite/ngx';
 
 
 
@@ -43,7 +44,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     
   ],
   providers: [
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, SQLite
   ],
   bootstrap: [AppComponent],
 })

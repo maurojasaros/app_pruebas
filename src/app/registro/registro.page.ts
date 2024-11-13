@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { MenuController } from '@ionic/angular';
+import { AuthServiceService } from '../services/auth-service.service';
 
 @Component({
   selector: 'app-registro',
@@ -19,11 +20,14 @@ export class RegistroPage {
   //fechaNacimiento: string = '';
   isAnimating: boolean = false;
   selectedDate: any = '';
+  password: string = '';
+  
 
   constructor(
     private route: ActivatedRoute,
     private alertController: AlertController,
-    private menu: MenuController
+    private menu: MenuController,
+    private authService: AuthServiceService
   ) {}
 
   ngOnInit() {
@@ -55,7 +59,7 @@ export class RegistroPage {
 
   // Método para limpiar campos
   limpiarCampos() {
-    this.isAnimating = true; // Activa la animación
+    this.isAnimating = true;
     setTimeout(() => {
       this.nombre = '';
       this.apellido = '';
@@ -64,8 +68,9 @@ export class RegistroPage {
       this.calle = '';
       this.ciudad = '';
       this.selectedDate = '';
-      this.isAnimating = false; // Desactiva la animación
-    }, 1000); // Duración de la animación
+      this.password = '';  // Limpiar también el campo de contraseña
+      this.isAnimating = false;
+    }, 1000);
   }
 
   // Método para mostrar alertas
@@ -110,28 +115,61 @@ export class RegistroPage {
 
   // Método para guardar datos
   guardar() {
-  console.log("Método guardar() llamado");
-  if (
-    this.nombre.trim() === '' || 
-    this.apellido.trim() === '' || 
-    this.nivelEducacion.trim() === '' || 
-    this.direccion.trim() === '' || 
-    this.calle.trim() === '' || 
-    this.ciudad.trim() === '' || 
-    !this.selectedDate
-  ) {
-    this.presentAlert('Error: Todos los campos deben estar llenos');
-  } else {
-    // Verificar edad
+    console.log("Método guardar() llamado");
+
+    // Verificación de campos vacíos
+    if (
+      this.nombre.trim() === '' || 
+      this.apellido.trim() === '' || 
+      this.nivelEducacion.trim() === '' || 
+      this.direccion.trim() === '' || 
+      this.calle.trim() === '' || 
+      this.ciudad.trim() === '' || 
+      !this.selectedDate ||
+      this.password.trim() === ''  // Verificar que la contraseña no esté vacía
+    ) {
+      let errorMessage = '';
+      if (this.nombre.trim() === '') errorMessage += 'Nombre, ';
+      if (this.apellido.trim() === '') errorMessage += 'Apellido, ';
+      if (this.nivelEducacion.trim() === '') errorMessage += 'Nivel de educación, ';
+      if (this.direccion.trim() === '') errorMessage += 'Dirección, ';
+      if (this.calle.trim() === '') errorMessage += 'Calle, ';
+      if (this.ciudad.trim() === '') errorMessage += 'Ciudad, ';
+      if (!this.selectedDate) errorMessage += 'Fecha de nacimiento, ';
+      if (this.password.trim() === '') errorMessage += 'Contraseña';  // Mensaje si la contraseña está vacía
+
+      this.presentAlert(`Error: Los siguientes campos están vacíos: ${errorMessage.slice(0, -2)}`);
+      return; 
+    }
+
+    // Verificación de edad
     const fechaNacimiento = new Date(this.selectedDate);
     const edad = this.calcularEdad(fechaNacimiento);
-    
+
     if (edad < 18) {
       this.presentAlert('Error: Debes tener al menos 18 años');
-    } else {
-      const nombreCompleto = `${this.nombre} ${this.apellido}`;
-      const fechaNacimientoFormateada = this.formatDate(this.selectedDate);
-      this.presentAlert(`Datos Correctos: usuario: ${nombreCompleto} fecha nacimiento: ${fechaNacimientoFormateada}`);
+      return; 
     }
+
+    // Llamada al servicio de autenticación para registrar el usuario
+    this.authService.registerUser(
+      this.nombre,
+      this.apellido,
+      this.email,  
+      this.password,    // Ahora usamos la contraseña ingresada
+      this.nivelEducacion,
+      this.direccion,
+      this.calle,
+      this.ciudad,
+      this.selectedDate
+    ).then((success) => {
+      if (success) {
+        this.presentAlert('Registro exitoso');
+      } else {
+        this.presentAlert('Error al registrar usuario. Por favor, intenta de nuevo.');
+      }
+    }).catch((error) => {
+      this.presentAlert(`Error inesperado: ${error.message}`);
+    });
   }
-}}
+}

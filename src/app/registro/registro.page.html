@@ -24,17 +24,17 @@
 
         <ion-item class="input-item">
           <ion-label position="floating">Nombre</ion-label>
-          <ion-input [(ngModel)]="nombre" [ngClass]="{'animate': isAnimating}" type="text"></ion-input>
+          <ion-input [(ngModel)]="nombre" [ngClass]="{'animate': isAnimating}" type="text" required></ion-input>
         </ion-item>
 
         <ion-item class="input-item">
           <ion-label position="floating">Apellido</ion-label>
-          <ion-input [(ngModel)]="apellido" [ngClass]="{'animate': isAnimating}" type="text"></ion-input>
+          <ion-input [(ngModel)]="apellido" [ngClass]="{'animate': isAnimating}" type="text" required></ion-input>
         </ion-item>
 
         <ion-item class="input-item">
           <ion-label>Nivel de Educación</ion-label>
-          <ion-select [(ngModel)]="nivelEducacion">
+          <ion-select [(ngModel)]="nivelEducacion" required>
             <ion-select-option value="universitario">Universitario</ion-select-option>
             <ion-select-option value="magister">Magister</ion-select-option>
             <ion-select-option value="doctorado">Doctorado</ion-select-option>
@@ -45,26 +45,31 @@
 
         <ion-item class="input-item">
           <ion-label position="floating">Dirección</ion-label>
-          <ion-input [(ngModel)]="direccion" type="text"></ion-input>
+          <ion-input [(ngModel)]="direccion" type="text" required></ion-input>
         </ion-item>
 
         <ion-item class="input-item">
           <ion-label position="floating">Calle</ion-label>
-          <ion-input [(ngModel)]="calle" type="text"></ion-input>
+          <ion-input [(ngModel)]="calle" type="text" required></ion-input>
         </ion-item>
 
         <ion-item class="input-item">
           <ion-label position="floating">Ciudad</ion-label>
-          <ion-input [(ngModel)]="ciudad" type="text"></ion-input>
+          <ion-input [(ngModel)]="ciudad" type="text" required></ion-input>
         </ion-item>
 
         <ion-item class="input-item">
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Fecha de Nacimiento</mat-label>
-            <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate" />
+            <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate" required />
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
+        </ion-item>
+
+        <ion-item class="input-item">
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input [(ngModel)]="password" [type]="'password'" required></ion-input>
         </ion-item>
 
         <ion-button expand="full" (click)="guardar()">Guardar Cambios</ion-button>
@@ -73,6 +78,3 @@
     </ion-card-content>
   </ion-card>
 </ion-content>
-
-
-
