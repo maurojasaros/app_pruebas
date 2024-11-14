@@ -22,6 +22,12 @@
       <div id="user">
         <p>Usuario: {{ email }}</p>
 
+        <!-- Campo para Email -->
+        <ion-item class="input-item">
+          <ion-label position="floating">Email</ion-label>
+          <ion-input [(ngModel)]="email" [ngClass]="{'animate': isAnimating}" type="email" required></ion-input>
+        </ion-item>
+
         <ion-item class="input-item">
           <ion-label position="floating">Nombre</ion-label>
           <ion-input [(ngModel)]="nombre" [ngClass]="{'animate': isAnimating}" type="text" required></ion-input>
@@ -45,19 +51,20 @@
 
         <ion-item class="input-item">
           <ion-label position="floating">Dirección</ion-label>
-          <ion-input [(ngModel)]="direccion" type="text" required></ion-input>
+          <ion-input [(ngModel)]="direccion" [ngClass]="{'animate': isAnimating}" type="text" required></ion-input>
         </ion-item>
 
         <ion-item class="input-item">
           <ion-label position="floating">Calle</ion-label>
-          <ion-input [(ngModel)]="calle" type="text" required></ion-input>
+          <ion-input [(ngModel)]="calle" [ngClass]="{'animate': isAnimating}" type="text" required></ion-input>
         </ion-item>
 
         <ion-item class="input-item">
           <ion-label position="floating">Ciudad</ion-label>
-          <ion-input [(ngModel)]="ciudad" type="text" required></ion-input>
+          <ion-input [(ngModel)]="ciudad" [ngClass]="{'animate': isAnimating}" type="text" required></ion-input>
         </ion-item>
 
+        <!-- Campo de Fecha de Nacimiento (sin modificaciones) -->
         <ion-item class="input-item">
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Fecha de Nacimiento</mat-label>
@@ -69,9 +76,10 @@
 
         <ion-item class="input-item">
           <ion-label position="floating">Contraseña</ion-label>
-          <ion-input [(ngModel)]="password" [type]="'password'" required></ion-input>
+          <ion-input [(ngModel)]="password" [type]="'password'" [ngClass]="{'animate': isAnimating}" required></ion-input>
         </ion-item>
 
+        <!-- Botones -->
         <ion-button expand="full" (click)="guardar()">Guardar Cambios</ion-button>
         <ion-button expand="full" (click)="limpiarCampos()" class="clear-button">Limpiar</ion-button>
       </div>
