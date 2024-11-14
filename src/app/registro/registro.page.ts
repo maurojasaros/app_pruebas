@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { MenuController } from '@ionic/angular';
 import { AuthServiceService } from '../services/auth-service.service';
+import { Platform } from '@ionic/angular'; // Importa Platform
 
 @Component({
   selector: 'app-registro',
@@ -25,14 +26,19 @@ export class RegistroPage {
     private route: ActivatedRoute,
     private alertController: AlertController,
     private menu: MenuController,
-    private authService: AuthServiceService
+    private authService: AuthServiceService,
+    private platform: Platform // Agrega Platform en el constructor
   ) {}
 
   ngOnInit() {
     this.menu.close("mainMenu");
-    // Obtener los parámetros de la URL
-    this.route.queryParams.subscribe(params => {
-      this.email = params['email']; // Asumimos que el email es pasado desde el login
+
+    // Espera a que la plataforma esté lista antes de ejecutar la lógica
+    this.platform.ready().then(() => {
+      // Obtener los parámetros de la URL
+      this.route.queryParams.subscribe(params => {
+        this.email = params['email']; // Asumimos que el email es pasado desde el login
+      });
     });
   }
 
@@ -157,7 +163,9 @@ export class RegistroPage {
     ).then((success) => {
       if (success) {
         this.presentAlert('Registro exitoso');
-        // Al registrar con éxito, puedes redirigir al login para que el usuario inicie sesión
+        // Redirigir al login después de un registro exitoso
+        // Aquí puedes agregar código para redirigir a la página de login, como por ejemplo:
+        // this.router.navigate(['/login']);
       } else {
         this.presentAlert('Error al registrar usuario. Por favor, intenta de nuevo.');
       }

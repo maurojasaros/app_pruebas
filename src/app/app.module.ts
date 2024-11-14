@@ -39,7 +39,7 @@ import { SQLite } from '@awesome-cordova-plugins/sqlite/ngx';
     FormsModule,
     CarritoComponent,
     MatListModule,
-    MatToolbarModule
+    MatToolbarModule,
     
     
   ],

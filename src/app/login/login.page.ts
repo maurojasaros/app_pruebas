@@ -20,10 +20,11 @@ export class LoginPage implements OnInit {
     private authService: AuthServiceService
   ) { }
 
-  ngOnInit() {
-    // Verificar si el usuario ya está logueado al cargar la página
-    const isLoggedIn = sessionStorage.getItem('isLoggedIn');
-    if (isLoggedIn === 'true') {
+  async ngOnInit() {
+    // Verificar si hay una sesión activa al iniciar la página
+    const isLoggedIn = await this.authService.isSessionActive();
+    if (isLoggedIn) {
+      // Si ya hay sesión activa, redirigir al Home
       this.router.navigate(['/home']);
     }
   }
@@ -69,8 +70,8 @@ export class LoginPage implements OnInit {
     }
 
     // Validar la longitud de la contraseña
-    if (this.password.length > 4) {
-      this.mostrarAlerta('La contraseña no puede tener más de 4 caracteres.');
+    if (this.password.length < 4) {
+      this.mostrarAlerta('La contraseña debe tener más de 4 caracteres.');
       return;
     }
 
@@ -78,9 +79,8 @@ export class LoginPage implements OnInit {
     const isValidLogin = await this.authService.loginUser(this.email, this.password);
 
     if (isValidLogin) {
-      // Si el login es exitoso, guardar los datos de sesión
-      sessionStorage.setItem('userEmail', this.email); // Guardar el email
-      sessionStorage.setItem('isLoggedIn', 'true');    // Indicador de sesión activa
+      // Si el login es exitoso, actualizar la sesión en SQLite
+      await this.authService.setSessionActive(this.email, true);
 
       // Navegar a la página de inicio
       this.navCtrl.navigateForward(['/home']);
