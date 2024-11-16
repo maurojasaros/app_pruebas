@@ -14,7 +14,7 @@ import { GameCardComponent } from '../game-card/game-card.component';
 import { MisDatosComponent } from '../mis-datos/mis-datos.component'; 
 import { CertificacionesComponent } from '../certificaciones/certificaciones.component'; 
 import { ExperienciaLaboralComponent } from '../experiencia-laboral/experiencia-laboral.component'; 
-
+import { AuthServiceService } from '../services/auth-service.service';
 
 
 @NgModule({
@@ -32,5 +32,6 @@ import { ExperienciaLaboralComponent } from '../experiencia-laboral/experiencia-
     
   ],
   declarations: [HomePage, MisDatosComponent, CertificacionesComponent, ExperienciaLaboralComponent],
+  providers: [AuthServiceService],
 })
 export class HomePageModule {}

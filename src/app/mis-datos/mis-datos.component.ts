@@ -16,25 +16,33 @@ export class MisDatosComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.loadUserData();
+    console.log('MisDatosComponent cargado');
+  this.loadUserData();
   }
 
   async loadUserData() {
-    const email = 'mao@gmail.com'; // Aquí deberías obtener el email del usuario logueado
-    this.userData = await this.authService.getUserData(email);
+    try {
+      const email = await this.authService.getActiveUserEmail();
+      if (email) {
+        this.userData = await this.authService.getUserData(email);
+      } else {
+        console.error('No hay usuario activo');
+      }
+    } catch (error) {
+      console.error('Error al cargar los datos del usuario', error);
+    }
   }
 
   async updateData() {
-    const email = 'mao@gmail.com'; // Aquí deberías obtener el email del usuario logueado
-    const { nombre, apellido, direccion, calle, ciudad, fecha_nacimiento } = this.userData;
-    const success = await this.authService.updateUserData(
-      email, nombre, apellido, direccion, calle, ciudad, fecha_nacimiento
-    );
-    if (success) {
-      console.log('Datos actualizados con éxito');
-      // Redirigir a otra página si es necesario
-    } else {
-      console.error('Error al actualizar los datos');
+    const email = await this.authService.getActiveUserEmail();
+    if (email) {
+      const { nombre, apellido, direccion, calle, ciudad, fecha_nacimiento } = this.userData;
+      const success = await this.authService.updateUserData(email, nombre, apellido, direccion, calle, ciudad, fecha_nacimiento);
+      if (success) {
+        console.log('Datos actualizados con éxito');
+      } else {
+        console.error('Error al actualizar los datos');
+      }
     }
   }
 }

@@ -160,6 +160,22 @@ export class AuthServiceService {
     }
   }
 
+  async getActiveUserEmail(): Promise<string | null> {
+    try {
+      console.log('Ejecutando getActiveUserEmail...');
+      const result = await this.dbInstance.executeSql(`SELECT email FROM sesion_data WHERE active = 1`, []);
+      console.log('Resultado de la consulta:', result);
+      if (result.rows.length > 0) {
+        console.log('Email encontrado:', result.rows.item(0).email);
+        return result.rows.item(0).email;
+      }
+      console.log('No se encontró email');
+      return null;
+    } catch (error) {
+      console.error('Error al obtener el email del usuario activo:', error);
+      return null;
+    }
+  }
   // Establecer el estado de sesión activo
   async setSessionActive(email: string, isActive: boolean): Promise<void> {
     try {

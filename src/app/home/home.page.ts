@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, MenuController, NavController } from '@ionic/angular';
+import { AuthServiceService } from '../services/auth-service.service';
 
 
 @Component({
@@ -8,7 +9,7 @@ import { AlertController, MenuController, NavController } from '@ionic/angular';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit{
 
   email: string = '';
   nombre: string = '';
@@ -49,7 +50,8 @@ export class HomePage {
     private alertController: AlertController, 
     private menu: MenuController,
     private navCtrl: NavController, // Agregado para la navegación
-    private router: Router  // Para redirigir al cambiar de segmento
+    private router: Router,  // Para redirigir al cambiar de segmento
+    private authService: AuthServiceService
   ) {}
 
 
@@ -57,14 +59,19 @@ export class HomePage {
 
   abrirMenu() {
     this.menu.open('mainMenu');
+    
   }
   
-  ngOnInit() {
-    this.menu.close("mainMenu");
-    // Obtener los parámetros de la URL
-    this.route.queryParams.subscribe(params => {
-      this.email = params['email']; 
-    });
+  async ngOnInit() {
+    this.menu.close("mainMenu");  // Cierra el menú al cargar la página
+  
+    // Obtener el email del usuario activo desde el servicio
+    const activeEmail = await this.authService.getActiveUserEmail();
+  
+    // Asegurarte de que email no sea null
+    this.email = activeEmail || ''; // Si activeEmail es null, asignamos un string vacío
+  
+    console.log('Email obtenido desde el authService:', this.email);  // Para depuración
   }
 
   
