@@ -3,6 +3,9 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 import { CarritoComponent } from './carrito/carrito.component';
 import { FavoritosComponent } from './favoritos/favoritos.component';
+import { MisDatosComponent } from './mis-datos/mis-datos.component';
+import { CertificacionesComponent } from './certificaciones/certificaciones.component';
+import { ExperienciaLaboralComponent } from './experiencia-laboral/experiencia-laboral.component';
 
 const routes: Routes = [
   {
@@ -47,6 +50,19 @@ const routes: Routes = [
     loadChildren: () => import('./acerca-de-nosotros/acerca-de-nosotros.module').then( m => m.AcercaDeNosotrosPageModule)
   },
   { path: 'acerca-de-nosotros', loadChildren: () => import('./acerca-de-nosotros/acerca-de-nosotros.module').then(m => m.AcercaDeNosotrosPageModule) },
+  
+  {
+    path: 'mis-datos',
+    component: MisDatosComponent  // Aquí agregas el componente MisDatos
+  },
+  {
+    path: 'certificados',
+    component: CertificacionesComponent  // Aquí agregas el componente Certificados
+  },
+  {
+    path: 'experiencia-laboral',
+    component: ExperienciaLaboralComponent  // Aquí agregas el componente Experiencia Laboral
+  }
   
   
 ];

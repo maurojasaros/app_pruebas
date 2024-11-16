@@ -50,6 +50,34 @@ export class AuthServiceService {
       )`,
       []
     );
+
+      // Crear la tabla de certificaciones
+    await this.dbInstance.executeSql(
+      `CREATE TABLE IF NOT EXISTS certificaciones(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_email TEXT,
+        nombre TEXT,
+        descripcion TEXT,
+        fecha TEXT,
+        FOREIGN KEY(user_email) REFERENCES sesion_data(email)
+      )`,
+      []
+    );
+
+    // Crear tabla de experiencia laboral
+    await this.dbInstance.executeSql(
+      `CREATE TABLE IF NOT EXISTS experiencia_laboral (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_email TEXT,
+        empresa TEXT,
+        puesto TEXT,
+        fecha_inicio TEXT,
+        fecha_fin TEXT,
+        descripcion TEXT,
+        FOREIGN KEY(user_email) REFERENCES sesion_data(email)
+      )`, []
+    );
+    
   }
 
   // Registrar un nuevo usuario
@@ -188,6 +216,54 @@ export class AuthServiceService {
       this.router.navigate(['/login']);
     } catch (error) {
       console.error('Error al cerrar sesión:', error);
+    }
+  }
+
+    // Obtener los datos del usuario por email
+  async getUserData(email: string): Promise<any> {
+    try {
+      const result = await this.dbInstance.executeSql(
+        `SELECT * FROM sesion_data WHERE email = ?`,
+        [email]
+      );
+      if (result.rows.length > 0) {
+        return result.rows.item(0); // Devuelve los datos del primer (y único) usuario encontrado
+      } else {
+        console.error('Usuario no encontrado');
+        return null;
+      }
+    } catch (error) {
+      console.error('Error al obtener los datos del usuario:', error);
+      return null;
+    }
+  }
+
+    // Actualizar los datos del usuario
+  async updateUserData(
+    email: string,
+    nombre: string,
+    apellido: string,
+    direccion: string,
+    calle: string,
+    ciudad: string,
+    fechaNacimiento: string
+  ): Promise<boolean> {
+    if (!nombre || !apellido || !direccion || !calle || !ciudad || !fechaNacimiento) {
+      console.error('Todos los campos son obligatorios');
+      return false;
+    }
+
+    try {
+      await this.dbInstance.executeSql(
+        `UPDATE sesion_data
+        SET nombre = ?, apellido = ?, direccion = ?, calle = ?, ciudad = ?, fecha_nacimiento = ?
+        WHERE email = ?`,
+        [nombre, apellido, direccion, calle, ciudad, fechaNacimiento, email]
+      );
+      return true;
+    } catch (error) {
+      console.error('Error al actualizar los datos del usuario:', error);
+      return false;
     }
   }
 }

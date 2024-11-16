@@ -11,6 +11,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { LogoComponentComponent } from '../logo-component/logo-component.component';
 import { GameCardComponent } from '../game-card/game-card.component';
+import { MisDatosComponent } from '../mis-datos/mis-datos.component'; 
+import { CertificacionesComponent } from '../certificaciones/certificaciones.component'; 
+import { ExperienciaLaboralComponent } from '../experiencia-laboral/experiencia-laboral.component'; 
 
 
 
@@ -28,6 +31,6 @@ import { GameCardComponent } from '../game-card/game-card.component';
     GameCardComponent
     
   ],
-  declarations: [HomePage],
+  declarations: [HomePage, MisDatosComponent, CertificacionesComponent, ExperienciaLaboralComponent],
 })
 export class HomePageModule {}

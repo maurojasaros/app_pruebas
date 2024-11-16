@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, MenuController, NavController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-home',
@@ -15,6 +16,16 @@ export class HomePage {
   nivelEducacion: string = '';
   fechaNacimiento: string = '';
   isAnimating: boolean = false;
+
+  // Estado actual de la segmentación (por defecto "perfil")
+  selectedSegment: string = 'perfil';
+
+  // Componentes a mostrar según el segmento
+  components: any = {
+    perfil: 'Mis Datos',  // Este componente es 'Mis Datos'
+    experiencias: 'Experiencia Laboral', // Este componente es 'Experiencia Laboral'
+    certificaciones: 'Certificaciones', // Este componente es 'Certificaciones'
+  };
 
   // Array de juegos
   juegos: { titulo: string; precio: number; descripcion: string; imagen: string; ruta?: string }[] = [
@@ -37,8 +48,12 @@ export class HomePage {
     private route: ActivatedRoute, 
     private alertController: AlertController, 
     private menu: MenuController,
-    private navCtrl: NavController // Agregado para la navegación
+    private navCtrl: NavController, // Agregado para la navegación
+    private router: Router  // Para redirigir al cambiar de segmento
   ) {}
+
+
+  
 
   abrirMenu() {
     this.menu.open('mainMenu');
@@ -51,6 +66,8 @@ export class HomePage {
       this.email = params['email']; 
     });
   }
+
+  
 
   // Método para mostrar alerta con la información del usuario
   async mostrarInformacion() {
@@ -92,5 +109,16 @@ export class HomePage {
       // Maneja el caso en que category es undefined
       console.warn('La categoría no está definida');
     }
+  }
+
+  // Método de redirección para cargar el perfil de los datos
+  ionViewWillEnter() {
+    this.router.navigate(['home/perfil']);
+  }
+
+  // Método que se llama cuando cambia el segmento
+  segmentChanged(event: any) {
+    console.log('Segmento cambiado:', event.detail.value);
+    this.selectedSegment = event.detail.value;
   }
 }

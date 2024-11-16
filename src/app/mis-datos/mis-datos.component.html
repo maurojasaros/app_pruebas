@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mis Datos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="userData">
+    <form (ngSubmit)="updateData()">
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input [(ngModel)]="userData.nombre" name="nombre" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Apellido</ion-label>
+        <ion-input [(ngModel)]="userData.apellido" name="apellido" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Dirección</ion-label>
+        <ion-input [(ngModel)]="userData.direccion" name="direccion" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Calle</ion-label>
+        <ion-input [(ngModel)]="userData.calle" name="calle" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Ciudad</ion-label>
+        <ion-input [(ngModel)]="userData.ciudad" name="ciudad" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Fecha de nacimiento</ion-label>
+        <ion-input [(ngModel)]="userData.fecha_nacimiento" name="fecha_nacimiento" type="date" required></ion-input>
+      </ion-item>
+
+      <ion-button expand="full" type="submit">Actualizar</ion-button>
+    </form>
+  </div>
+</ion-content>

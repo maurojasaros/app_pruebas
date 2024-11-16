@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Certificaciones</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let certificado of certificados">
+      <ion-label>
+        <h2>{{ certificado.nombre }}</h2>
+        <p>{{ certificado.descripcion }}</p>
+        <small>{{ certificado.fecha }}</small>
+      </ion-label>
+      <ion-button slot="end" (click)="deleteCertificado(certificado.id)">
+        Eliminar
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <!-- Cambia 'nuevoCertificado' por el objeto que has definido en el TS -->
+  <ion-button expand="full" (click)="addCertificado(nuevoCertificado)">
+    Agregar Certificado
+  </ion-button>
+</ion-content>

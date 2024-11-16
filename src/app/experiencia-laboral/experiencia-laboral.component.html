@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Experiencia Laboral</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Formulario para agregar una nueva experiencia laboral -->
+  <ion-item>
+    <ion-label>Empresa</ion-label>
+    <ion-input [(ngModel)]="nuevaExperiencia.empresa" placeholder="Ingrese la empresa"></ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label>Puesto</ion-label>
+    <ion-input [(ngModel)]="nuevaExperiencia.puesto" placeholder="Ingrese el puesto"></ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label>Fecha de inicio</ion-label>
+    <ion-datetime [(ngModel)]="nuevaExperiencia.fecha_inicio"></ion-datetime>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label>Fecha de fin</ion-label>
+    <ion-datetime [(ngModel)]="nuevaExperiencia.fecha_fin"></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Descripción</ion-label>
+    <ion-textarea [(ngModel)]="nuevaExperiencia.descripcion" placeholder="Ingrese la descripción"></ion-textarea>
+  </ion-item>
+
+  <ion-button expand="full" (click)="addExperienciaLaboral()">Agregar Experiencia</ion-button>
+
+  <!-- Listado de experiencias laborales -->
+  <ion-list>
+    <ion-item *ngFor="let experiencia of experienciaLaboral">
+      <ion-label>
+        <h2>{{ experiencia.empresa }}</h2>
+        <p>{{ experiencia.puesto }} | {{ experiencia.fecha_inicio }} - {{ experiencia.fecha_fin }}</p>
+        <p>{{ experiencia.descripcion }}</p>
+      </ion-label>
+      <ion-buttons slot="end">
+        <ion-button color="primary" (click)="updateExperienciaLaboral(experiencia)">Editar</ion-button>
+        <ion-button color="danger" (click)="deleteExperienciaLaboral(experiencia.id)">Eliminar</ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+</ion-content>
