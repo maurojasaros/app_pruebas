@@ -12,6 +12,7 @@ import { CertificacionesComponent } from './certificaciones.component';  // El c
     IonicModule,
     FormsModule,
     CertificacionesRoutingModule  // Asegúrate de que el routing module también sea correcto
-  ]
+  ],
+  exports: [CertificacionesComponent]
 })
 export class CertificacionesModule {}

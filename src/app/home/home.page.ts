@@ -126,7 +126,7 @@ export class HomePage implements OnInit{
   }
 
   navigateToCertificaciones() {
-    this.selectedSegment = 'certificaciones';  // Cambia al segmento 'certificaciones'
+    this.router.navigate(['/certificados']);  // Cambia al segmento 'certificaciones'
   }
 
   // Método que se llama cuando cambia el segmento

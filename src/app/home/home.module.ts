@@ -12,8 +12,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { LogoComponentComponent } from '../logo-component/logo-component.component';
 import { GameCardComponent } from '../game-card/game-card.component';
 
-import { CertificacionesComponent } from '../certificaciones/certificaciones.component'; 
-import { ExperienciaLaboralComponent } from '../experiencia-laboral/experiencia-laboral.component'; 
+import { CertificacionesModule } from '../certificaciones/certificaciones.module'; 
+import { ExperienciaLaboralModule } from '../experiencia-laboral/experiencia-laboral.module'; 
 import { AuthServiceService } from '../services/auth-service.service';
 import { MisDatosModule } from '../mis-datos/mis-datos.module';
 
@@ -30,10 +30,12 @@ import { MisDatosModule } from '../mis-datos/mis-datos.module';
     MatNativeDateModule,
     LogoComponentComponent,
     GameCardComponent,
-    MisDatosModule
+    MisDatosModule,
+    CertificacionesModule,
+    ExperienciaLaboralModule
     
   ],
-  declarations: [HomePage, CertificacionesComponent, ExperienciaLaboralComponent],
+  declarations: [HomePage],
   providers: [AuthServiceService],
 })
 export class HomePageModule {}
