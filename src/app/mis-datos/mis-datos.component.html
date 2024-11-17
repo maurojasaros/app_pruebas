@@ -7,6 +7,7 @@
 
 <ion-content>
   <div *ngIf="userData">
+    <pre>{{ userData | json }}</pre>
     <form (ngSubmit)="updateData()">
       <ion-item>
         <ion-label position="floating">Nombre</ion-label>
@@ -31,5 +32,15 @@
 
       <ion-button expand="full" type="submit">Actualizar</ion-button>
     </form>
+  </div>
+
+  <div>
+    <h1>Mis Datos</h1>
+    <p><strong>Nombre:</strong> {{ userData.nombre }}</p>
+    <p><strong>Apellido:</strong> {{ userData.apellido }}</p>
+    <p><strong>Email:</strong> {{ userData.email }}</p>
+    <p><strong>Dirección:</strong> {{ userData.direccion }}</p>
+    <p><strong>Ciudad:</strong> {{ userData.ciudad }}</p>
+    <p><strong>Fecha de nacimiento:</strong> {{ userData.fecha_nacimiento }}</p>
   </div>
 </ion-content>
