@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import { AuthServiceService } from '../services/auth-service.service'; // Importar tu servicio
 import { Router } from '@angular/router';
 import { ChangeDetectorRef } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-mis-datos',
@@ -14,7 +15,8 @@ export class MisDatosComponent implements OnInit, AfterViewChecked {
   constructor(
     private authService: AuthServiceService,
     private router: Router,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private navCtrl: NavController
   ) {}
 
   ngOnInit() {
@@ -67,5 +69,23 @@ export class MisDatosComponent implements OnInit, AfterViewChecked {
     } else {
       console.error('No hay usuario activo para actualizar');
     }
+  }
+
+   // Método para actualizar los datos del usuario
+   updateUserData(email: string) {
+    console.log('Actualizando los datos para el usuario con email:', email);
+
+    // Aquí puedes hacer algo con el email, como cargar los datos del usuario
+    // Ejemplo:
+    this.authService.getUserData(email).then((data) => {
+      this.userData = data;
+      console.log('Datos del usuario cargados:', this.userData);
+    }).catch((error) => {
+      console.error('Error al cargar los datos del usuario', error);
+    });
+  }
+
+  volverAtras() {
+    this.navCtrl.back();  // Esto navega hacia atrás en el historial de navegación
   }
 }

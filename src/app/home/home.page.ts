@@ -11,6 +11,8 @@ import { AuthServiceService } from '../services/auth-service.service';
 })
 export class HomePage implements OnInit{
 
+  // Estado actual de la segmentación (por defecto "perfil")
+  selectedSegment: string = 'perfil';
   email: string = '';
   nombre: string = '';
   apellido: string = '';
@@ -18,9 +20,8 @@ export class HomePage implements OnInit{
   fechaNacimiento: string = '';
   isAnimating: boolean = false;
 
-  // Estado actual de la segmentación (por defecto "perfil")
-  selectedSegment: string = 'perfil';
-
+  
+  
   // Componentes a mostrar según el segmento
   components: any = {
     perfil: 'Mis Datos',  // Este componente es 'Mis Datos'
@@ -63,6 +64,7 @@ export class HomePage implements OnInit{
   }
   
   async ngOnInit() {
+    
     this.menu.close("mainMenu");  // Cierra el menú al cargar la página
   
     // Obtener el email del usuario activo desde el servicio
@@ -119,8 +121,12 @@ export class HomePage implements OnInit{
   }
 
   // Método de redirección para cargar el perfil de los datos
-  ionViewWillEnter() {
-    this.router.navigate(['home/perfil']);
+  navigateToMisDatos() {
+    this.router.navigate(['/mis-datos']);  // Navega a la ruta de Mis Datos
+  }
+
+  navigateToCertificaciones() {
+    this.selectedSegment = 'certificaciones';  // Cambia al segmento 'certificaciones'
   }
 
   // Método que se llama cuando cambia el segmento

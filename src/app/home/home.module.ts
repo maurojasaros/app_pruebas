@@ -11,10 +11,11 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { LogoComponentComponent } from '../logo-component/logo-component.component';
 import { GameCardComponent } from '../game-card/game-card.component';
-import { MisDatosComponent } from '../mis-datos/mis-datos.component'; 
+
 import { CertificacionesComponent } from '../certificaciones/certificaciones.component'; 
 import { ExperienciaLaboralComponent } from '../experiencia-laboral/experiencia-laboral.component'; 
 import { AuthServiceService } from '../services/auth-service.service';
+import { MisDatosModule } from '../mis-datos/mis-datos.module';
 
 
 @NgModule({
@@ -28,10 +29,11 @@ import { AuthServiceService } from '../services/auth-service.service';
     MatDatepickerModule,
     MatNativeDateModule,
     LogoComponentComponent,
-    GameCardComponent
+    GameCardComponent,
+    MisDatosModule
     
   ],
-  declarations: [HomePage, MisDatosComponent, CertificacionesComponent, ExperienciaLaboralComponent],
+  declarations: [HomePage, CertificacionesComponent, ExperienciaLaboralComponent],
   providers: [AuthServiceService],
 })
 export class HomePageModule {}

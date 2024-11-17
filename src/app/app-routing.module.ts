@@ -53,15 +53,15 @@ const routes: Routes = [
   
   {
     path: 'mis-datos',
-    component: MisDatosComponent  // Aquí agregas el componente MisDatos
+    loadChildren: () => import('./mis-datos/mis-datos.module').then(m => m.MisDatosModule)
   },
   {
     path: 'certificados',
-    component: CertificacionesComponent  // Aquí agregas el componente Certificados
+    loadChildren: () => import('./certificaciones/certificaciones.module').then(m => m.CertificacionesModule)  // Aquí usamos loadChildren con el módulo CertificacionesModule
   },
   {
     path: 'experiencia-laboral',
-    component: ExperienciaLaboralComponent  // Aquí agregas el componente Experiencia Laboral
+    loadChildren: () => import('./experiencia-laboral/experiencia-laboral.module').then(m => m.ExperienciaLaboralModule)  // Aquí usamos loadChildren con el módulo ExperienciaLaboralModule
   }
   
   

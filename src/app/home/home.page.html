@@ -40,7 +40,6 @@
   <!-- Contenido dinámico que cambia según el segmento seleccionado -->
   <div [ngSwitch]="selectedSegment">
     <app-mis-datos *ngSwitchCase="'perfil'"></app-mis-datos>
-    
     <app-experiencia-laboral *ngSwitchCase="'experiencia-laboral'"></app-experiencia-laboral>
     <app-certificaciones *ngSwitchCase="'certificaciones'"></app-certificaciones>
   </div>
@@ -58,4 +57,8 @@
       [rutaRedireccion]="juego.ruta">
     </app-game-card>
   </div>
+
+  <!-- Botón para navegar a Mis Datos -->
+  <ion-button expand="full" (click)="navigateToMisDatos()">Ver Mis Datos</ion-button> <!-- Botón aquí -->
+  <ion-button expand="full" (click)="navigateToCertificaciones()">Ver Certificaciones</ion-button> <!-- Botón aquí -->
 </ion-content>
