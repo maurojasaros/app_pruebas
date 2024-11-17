@@ -129,9 +129,16 @@ export class HomePage implements OnInit{
     this.router.navigate(['/certificados']);  // Cambia al segmento 'certificaciones'
   }
 
+   // Función para redirigir a Experiencia Laboral
+   navigateToExperienciaLaboral() {
+    this.router.navigate(['/experiencia-laboral']);
+  }
   // Método que se llama cuando cambia el segmento
   segmentChanged(event: any) {
     console.log('Segmento cambiado:', event.detail.value);
     this.selectedSegment = event.detail.value;
+  }
+  goToExperienciaLaboral() {
+    this.selectedSegment = 'experiencia-laboral'; // Cambiar al segmento "experiencia-laboral"
   }
 }

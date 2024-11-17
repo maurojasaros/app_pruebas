@@ -5,21 +5,37 @@
 </ion-header>
 
 <ion-content>
+  <!-- Formulario para agregar una nueva certificación -->
+  <form (ngSubmit)="addCertificado(nuevoCertificado)">
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input type="text" [(ngModel)]="nuevoCertificado.nombre" name="nombre" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-textarea [(ngModel)]="nuevoCertificado.descripcion" name="descripcion" required></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Fecha</ion-label>
+      <ion-input type="date" [(ngModel)]="nuevoCertificado.fecha" name="fecha" required></ion-input>
+    </ion-item>
+
+    <ion-button expand="full" type="submit">Agregar Certificación</ion-button>
+  </form>
+
+  <!-- Mostrar las certificaciones -->
   <ion-list>
     <ion-item *ngFor="let certificado of certificados">
       <ion-label>
         <h2>{{ certificado.nombre }}</h2>
         <p>{{ certificado.descripcion }}</p>
-        <small>{{ certificado.fecha }}</small>
+        <p><small>{{ certificado.fecha }}</small></p>
       </ion-label>
       <ion-button slot="end" (click)="deleteCertificado(certificado.id)">
         Eliminar
       </ion-button>
     </ion-item>
   </ion-list>
-
-  <!-- Cambia 'nuevoCertificado' por el objeto que has definido en el TS -->
-  <ion-button expand="full" (click)="addCertificado(nuevoCertificado)">
-    Agregar Certificado
-  </ion-button>
 </ion-content>
