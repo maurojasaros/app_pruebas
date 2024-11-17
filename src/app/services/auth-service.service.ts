@@ -7,82 +7,82 @@ import { Platform } from '@ionic/angular'; // Importar Platform si decides usarl
   providedIn: 'root'
 })
 export class AuthServiceService {
-  public dbInstance!: SQLiteObject;
+  public dbInstance!: SQLiteObject;  // Definir dbInstance que representa la base de datos SQLite
 
   constructor(
     private sqlite: SQLite,
     private router: Router,  // Inyectar Router
     private platform: Platform // Inyectar Platform
   ) {
+    // Asegurarse de que la base de datos se inicialice en cuanto el servicio se crea
     this.initializeDatabase();
   }
 
   // Inicializa la base de datos SQLite
   async initializeDatabase() {
     try {
-      await this.platform.ready();  // Asegúrate de que la plataforma está lista
+      await this.platform.ready(); // Asegurarse de que la plataforma esté lista
       this.dbInstance = await this.sqlite.create({
         name: 'mydatabase.db',
         location: 'default',
       });
-      console.log('Base de datos inicializada');
-      await this.createTables();
-      await this.checkActiveSessionOnStart(); // Verifica si hay una sesión activa al inicio
+      console.log('Base de datos inicializada correctamente');
+      await this.createTables(); // Crear las tablas necesarias
+      await this.checkActiveSessionOnStart(); // Verificar si hay una sesión activa al inicio
     } catch (error) {
       console.error('Error al inicializar la base de datos:', error);
     }
   }
 
-  // Crea las tablas necesarias
+  // Crear las tablas necesarias si no existen
   async createTables() {
-    await this.dbInstance.executeSql(
-      `CREATE TABLE IF NOT EXISTS sesion_data(
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nombre TEXT,
-        apellido TEXT,
-        email TEXT UNIQUE,
-        password TEXT,
-        nivel_educacion TEXT,
-        direccion TEXT,
-        calle TEXT,
-        ciudad TEXT,
-        
-        active INTEGER DEFAULT 0
-      )`,
-      []
-    );
+    try {
+      // Crear tabla de usuarios
+      await this.dbInstance.executeSql(
+        `CREATE TABLE IF NOT EXISTS sesion_data(
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          nombre TEXT,
+          apellido TEXT,
+          email TEXT UNIQUE,
+          password TEXT,
+          nivel_educacion TEXT,
+          direccion TEXT,
+          calle TEXT,
+          ciudad TEXT,
+          active INTEGER DEFAULT 0
+        )`, []
+      );
 
-      // Crear la tabla de certificaciones
-    await this.dbInstance.executeSql(
-      `CREATE TABLE IF NOT EXISTS certificaciones(
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        user_email TEXT,
-        nombre TEXT,
-        descripcion TEXT,
-        fecha TEXT,
-        FOREIGN KEY(user_email) REFERENCES sesion_data(email)
-      )`,
-      []
-    );
+      // Crear tabla de certificaciones
+      await this.dbInstance.executeSql(
+        `CREATE TABLE IF NOT EXISTS certificaciones(
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          user_email TEXT,
+          nombre TEXT,
+          descripcion TEXT,
+          fecha TEXT,
+          FOREIGN KEY(user_email) REFERENCES sesion_data(email)
+        )`, []
+      );
 
-    // Crear tabla de experiencia laboral
-    await this.dbInstance.executeSql(
-      `CREATE TABLE IF NOT EXISTS experiencia_laboral (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        user_email TEXT,
-        empresa TEXT,
-        puesto TEXT,
-        fecha_inicio TEXT,
-        fecha_fin TEXT,
-        descripcion TEXT,
-        FOREIGN KEY(user_email) REFERENCES sesion_data(email)
-      )`, []
-    );
-    console.log('Tablas creadas o verificadas');
-    } catch (error: Error) {
+      // Crear tabla de experiencia laboral
+      await this.dbInstance.executeSql(
+        `CREATE TABLE IF NOT EXISTS experiencia_laboral (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          user_email TEXT,
+          empresa TEXT,
+          puesto TEXT,
+          fecha_inicio TEXT,
+          fecha_fin TEXT,
+          descripcion TEXT,
+          FOREIGN KEY(user_email) REFERENCES sesion_data(email)
+        )`, []
+      );
+
+      console.log('Tablas creadas o verificadas');
+    } catch (error) {
       console.error('Error al crear las tablas:', error);
-    
-    
+    }
   }
 
   // Registrar un nuevo usuario
@@ -94,15 +94,20 @@ export class AuthServiceService {
     nivelEducacion: string,
     direccion: string,
     calle: string,
-    ciudad: string,
-    
+    ciudad: string
   ): Promise<boolean> {
-    if (!nombre || !apellido || !email || !password || !nivelEducacion || !direccion || !calle || !ciudad ) {
+    if (!nombre || !apellido || !email || !password || !nivelEducacion || !direccion || !calle || !ciudad) {
       console.error('Todos los campos son obligatorios');
       return false;
     }
 
     try {
+      // Esperar que la base de datos esté lista antes de proceder
+      if (!this.dbInstance) {
+        await this.initializeDatabase(); // Inicializar la base de datos si aún no está lista
+      }
+
+      // Insertar el nuevo usuario en la base de datos
       await this.dbInstance.executeSql(
         `INSERT INTO sesion_data (nombre, apellido, email, password, nivel_educacion, direccion, calle, ciudad)
          VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
@@ -129,6 +134,11 @@ export class AuthServiceService {
     }
 
     try {
+      // Asegurarse de que la base de datos esté lista
+      if (!this.dbInstance) {
+        await this.initializeDatabase(); // Inicializar la base de datos si aún no está lista
+      }
+
       const result = await this.dbInstance.executeSql(
         `SELECT * FROM sesion_data WHERE email = ? AND password = ?`,
         [email, password]
@@ -154,9 +164,13 @@ export class AuthServiceService {
   // Verificar si hay una sesión activa
   async isSessionActive(): Promise<boolean> {
     try {
+      // Asegurarse de que la base de datos esté lista
+      if (!this.dbInstance) {
+        await this.initializeDatabase(); // Inicializar la base de datos si aún no está lista
+      }
+
       const result = await this.dbInstance.executeSql(
-        `SELECT * FROM sesion_data WHERE active = 1`,
-        []
+        `SELECT * FROM sesion_data WHERE active = 1`, []
       );
       return result.rows.length > 0;
     } catch (error) {
@@ -165,50 +179,42 @@ export class AuthServiceService {
     }
   }
 
-  async getActiveUserEmail(): Promise<string | null> {
-    try {
-      console.log('Ejecutando getActiveUserEmail...');
-      const result = await this.dbInstance.executeSql(`SELECT email FROM sesion_data WHERE active = 1`, []);
-      console.log('Resultado de la consulta:', result);
-      if (result.rows.length > 0) {
-        console.log('Email encontrado:', result.rows.item(0).email);
-        return result.rows.item(0).email;
-      }
-      console.log('No se encontró email');
-      return null;
-    } catch (error) {
-      console.error('Error al obtener el email del usuario activo:', error);
-      return null;
+  // Obtener el email del usuario activo
+async getActiveUserEmail(): Promise<string | null> {
+  try {
+    // Asegurarse de que la base de datos esté lista
+    if (!this.dbInstance) {
+      await this.initializeDatabase(); // Inicializar la base de datos si aún no está lista
     }
-  }
-  // Establecer el estado de sesión activo
-  async setSessionActive(email: string, isActive: boolean): Promise<void> {
-    try {
-      const activeStatus = isActive ? 1 : 0;
-      await this.updateSessionStatus(email, activeStatus);
-    } catch (error) {
-      console.error('Error al establecer el estado de sesión activa:', error);
-    }
-  }
 
-  // Actualizar el estado de la sesión
-  async updateSessionStatus(email: string, active: number): Promise<void> {
-    try {
-      await this.dbInstance.executeSql(
-        `UPDATE sesion_data SET active = ? WHERE email = ?`,
-        [active, email]
-      );
-    } catch (error) {
-      console.error('Error al actualizar el estado de la sesión:', error);
+    // Realizar la consulta para obtener el email del usuario activo
+    const result = await this.dbInstance.executeSql(
+      `SELECT email FROM sesion_data WHERE active = 1`, []
+    );
+
+    // Comprobar si se encontró un usuario activo
+    if (result.rows.length > 0) {
+      return result.rows.item(0).email; // Devuelve el email del primer usuario activo encontrado
     }
+
+    // Si no se encontró un usuario activo, devolver null
+    return null;
+  } catch (error) {
+    console.error('Error al obtener el email del usuario activo:', error);
+    return null;
   }
+}
 
   // Verificar si hay una sesión activa al inicio de la app
   async checkActiveSessionOnStart(): Promise<void> {
     try {
+      // Asegurarse de que la base de datos esté lista
+      if (!this.dbInstance) {
+        await this.initializeDatabase(); // Inicializar la base de datos si aún no está lista
+      }
+
       const result = await this.dbInstance.executeSql(
-        `SELECT * FROM sesion_data WHERE active = 1`,
-        []
+        `SELECT * FROM sesion_data WHERE active = 1`, []
       );
       if (result.rows.length > 0) {
         // Redirigir al Home si hay sesión activa
@@ -222,27 +228,64 @@ export class AuthServiceService {
     }
   }
 
+  // Establecer el estado de sesión activo
+  async setSessionActive(email: string, isActive: boolean): Promise<void> {
+    try {
+      const activeStatus = isActive ? 1 : 0;
+      await this.updateSessionStatus(email, activeStatus);
+    } catch (error) {
+      console.error('Error al establecer el estado de sesión activa:', error);
+    }
+  }
+
+  // Actualizar el estado de la sesión
+  async updateSessionStatus(email: string, active: number): Promise<void> {
+    try {
+      // Asegurarse de que la base de datos esté lista
+      if (!this.dbInstance) {
+        await this.initializeDatabase(); // Inicializar la base de datos si aún no está lista
+      }
+
+      await this.dbInstance.executeSql(
+        `UPDATE sesion_data SET active = ? WHERE email = ?`,
+        [active, email]
+      );
+    } catch (error) {
+      console.error('Error al actualizar el estado de la sesión:', error);
+    }
+  }
+
   // Cerrar sesión
   async logoutUser(): Promise<void> {
     try {
+      // Asegurarse de que la base de datos esté lista
+      if (!this.dbInstance) {
+        await this.initializeDatabase(); // Inicializar la base de datos si aún no está lista
+      }
+
       const result = await this.dbInstance.executeSql(
-        `SELECT email FROM sesion_data WHERE active = 1`,
-        []
+        `SELECT email FROM sesion_data WHERE active = 1`, []
       );
       if (result.rows.length > 0) {
         const email = result.rows.item(0).email;
         await this.setSessionActive(email, false);
       }
+
       // Redirigir a la pantalla de login después de cerrar sesión
       this.router.navigate(['/login']);
     } catch (error) {
       console.error('Error al cerrar sesión:', error);
     }
   }
-
-    // Obtener los datos del usuario por email
+  
+  // Obtener los datos del usuario por email
   async getUserData(email: string): Promise<any> {
     try {
+      // Asegurarse de que la base de datos esté lista
+      if (!this.dbInstance) {
+        await this.initializeDatabase(); // Inicializar la base de datos si aún no está lista
+      }
+
       const result = await this.dbInstance.executeSql(
         `SELECT * FROM sesion_data WHERE email = ?`,
         [email]
@@ -259,22 +302,27 @@ export class AuthServiceService {
     }
   }
 
-    // Actualizar los datos del usuario
+  // Actualizar los datos del usuario
   async updateUserData(
     email: string,
     nombre: string,
     apellido: string,
     direccion: string,
     calle: string,
-    ciudad: string,
-    
+    ciudad: string
   ): Promise<boolean> {
-    if (!nombre || !apellido || !direccion || !calle || !ciudad ) {
+    if (!nombre || !apellido || !direccion || !calle || !ciudad) {
       console.error('Todos los campos son obligatorios');
       return false;
     }
 
     try {
+      // Asegurarse de que la base de datos esté lista
+      if (!this.dbInstance) {
+        await this.initializeDatabase(); // Inicializar la base de datos si aún no está lista
+      }
+
+      // Actualizar los datos del usuario en la base de datos
       await this.dbInstance.executeSql(
         `UPDATE sesion_data
         SET nombre = ?, apellido = ?, direccion = ?, calle = ?, ciudad = ?
