@@ -25,6 +25,7 @@ export class AuthServiceService {
         name: 'mydatabase.db',
         location: 'default',
       });
+      console.log('Base de datos inicializada');
       await this.createTables();
       await this.checkActiveSessionOnStart(); // Verifica si hay una sesión activa al inicio
     } catch (error) {
@@ -45,7 +46,7 @@ export class AuthServiceService {
         direccion TEXT,
         calle TEXT,
         ciudad TEXT,
-        fecha_nacimiento TEXT,
+        
         active INTEGER DEFAULT 0
       )`,
       []
@@ -77,6 +78,10 @@ export class AuthServiceService {
         FOREIGN KEY(user_email) REFERENCES sesion_data(email)
       )`, []
     );
+    console.log('Tablas creadas o verificadas');
+    } catch (error: Error) {
+      console.error('Error al crear las tablas:', error);
+    
     
   }
 
@@ -90,18 +95,18 @@ export class AuthServiceService {
     direccion: string,
     calle: string,
     ciudad: string,
-    fechaNacimiento: string
+    
   ): Promise<boolean> {
-    if (!nombre || !apellido || !email || !password || !nivelEducacion || !direccion || !calle || !ciudad || !fechaNacimiento) {
+    if (!nombre || !apellido || !email || !password || !nivelEducacion || !direccion || !calle || !ciudad ) {
       console.error('Todos los campos son obligatorios');
       return false;
     }
 
     try {
       await this.dbInstance.executeSql(
-        `INSERT INTO sesion_data (nombre, apellido, email, password, nivel_educacion, direccion, calle, ciudad, fecha_nacimiento)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-        [nombre, apellido, email, password, nivelEducacion, direccion, calle, ciudad, fechaNacimiento]
+        `INSERT INTO sesion_data (nombre, apellido, email, password, nivel_educacion, direccion, calle, ciudad)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+        [nombre, apellido, email, password, nivelEducacion, direccion, calle, ciudad]
       );
 
       // Al registrar el usuario, lo marcamos como sesión activa
@@ -262,9 +267,9 @@ export class AuthServiceService {
     direccion: string,
     calle: string,
     ciudad: string,
-    fechaNacimiento: string
+    
   ): Promise<boolean> {
-    if (!nombre || !apellido || !direccion || !calle || !ciudad || !fechaNacimiento) {
+    if (!nombre || !apellido || !direccion || !calle || !ciudad ) {
       console.error('Todos los campos son obligatorios');
       return false;
     }
@@ -272,9 +277,9 @@ export class AuthServiceService {
     try {
       await this.dbInstance.executeSql(
         `UPDATE sesion_data
-        SET nombre = ?, apellido = ?, direccion = ?, calle = ?, ciudad = ?, fecha_nacimiento = ?
+        SET nombre = ?, apellido = ?, direccion = ?, calle = ?, ciudad = ?
         WHERE email = ?`,
-        [nombre, apellido, direccion, calle, ciudad, fechaNacimiento, email]
+        [nombre, apellido, direccion, calle, ciudad, email]
       );
       return true;
     } catch (error) {

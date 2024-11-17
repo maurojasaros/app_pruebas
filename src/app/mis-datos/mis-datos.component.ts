@@ -36,8 +36,8 @@ export class MisDatosComponent implements OnInit {
   async updateData() {
     const email = await this.authService.getActiveUserEmail();
     if (email) {
-      const { nombre, apellido, direccion, calle, ciudad, fecha_nacimiento } = this.userData;
-      const success = await this.authService.updateUserData(email, nombre, apellido, direccion, calle, ciudad, fecha_nacimiento);
+      const { nombre, apellido, direccion, calle, ciudad } = this.userData;
+      const success = await this.authService.updateUserData(email, nombre, apellido, direccion, calle, ciudad);
       if (success) {
         console.log('Datos actualizados con éxito');
       } else {
