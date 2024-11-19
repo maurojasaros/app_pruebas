@@ -141,4 +141,9 @@ export class HomePage implements OnInit{
   goToExperienciaLaboral() {
     this.selectedSegment = 'experiencia-laboral'; // Cambiar al segmento "experiencia-laboral"
   }
+
+  // Método para navegar a la página de trivia
+  goToTrivia() {
+    this.router.navigate(['/trivia']);  // Navega a la ruta '/trivia'
+  }
 }

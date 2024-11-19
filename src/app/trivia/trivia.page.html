@@ -1,26 +1,29 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-      Trivia de Videojuegos
-    </ion-title>
+    <ion-title>Trivia de Videojuegos</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list *ngIf="triviaQuestions.length > 0">
+  <ion-list>
     <ion-item *ngFor="let question of triviaQuestions; let i = index">
       <ion-label>
+        <!-- Mostrar la pregunta tal cual, sin usar el pipe -->
         <h2>{{ question.question }}</h2>
-        <ion-radio-group [(ngModel)]="selectedAnswer[i]">
+        
+        <ion-radio-group [(ngModel)]="selectedAnswer[i]" (ionChange)="checkAnswer(i)">
           <ion-item *ngFor="let option of getOptions(question)">
+            <!-- Mostrar cada opción sin usar el pipe -->
             <ion-label>{{ option }}</ion-label>
-            <ion-radio slot="start" [value]="option"></ion-radio>
+            <ion-radio [value]="option" [disabled]="isAnswered(i)"></ion-radio>
           </ion-item>
         </ion-radio-group>
-        <ion-button (click)="checkAnswer(i)">Verificar respuesta</ion-button>
       </ion-label>
     </ion-item>
   </ion-list>
 
-  <ion-toast *ngIf="toastMessage" [message]="toastMessage" [duration]="2000"></ion-toast>
+  <!-- Botón para ver el puntaje final -->
+  <ion-button [disabled]="!isQuizCompleted()" (click)="showToast(getFinalScore(), 'primary')">
+    Ver puntaje final
+  </ion-button>
 </ion-content>

@@ -79,6 +79,31 @@ export class AuthServiceService {
         )`, []
       );
 
+      // Crear tabla de preguntas de trivia
+      await this.dbInstance.executeSql(
+        `CREATE TABLE IF NOT EXISTS trivia_questions (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          user_email TEXT,
+          question TEXT,
+          correct_answer TEXT,
+          incorrect_answers TEXT,  // Se almacenan las respuestas incorrectas como un JSON string
+          FOREIGN KEY(user_email) REFERENCES sesion_data(email) ON DELETE CASCADE
+        )`, []
+      );
+
+        // Crear tabla de respuestas de los usuarios
+      await this.dbInstance.executeSql(
+        `CREATE TABLE IF NOT EXISTS trivia_answers(
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          user_email TEXT,
+          question TEXT,
+          selected_answer TEXT,
+          is_correct INTEGER,
+          FOREIGN KEY(user_email) REFERENCES users(email) ON DELETE CASCADE,
+          FOREIGN KEY(question) REFERENCES trivia_questions(question) ON DELETE CASCADE
+        )`, []
+      );
+
       console.log('Tablas creadas o verificadas');
     } catch (error) {
       console.error('Error al crear las tablas:', error);
