@@ -3,17 +3,15 @@
     <ion-title>Trivia de Videojuegos</ion-title>
   </ion-toolbar>
 </ion-header>
-
+<ion-button expand="full" (click)="loadTrivia()">Actualizar Preguntas</ion-button>
 <ion-content>
+  
   <ion-list>
     <ion-item *ngFor="let question of triviaQuestions; let i = index">
       <ion-label>
-        <!-- Mostrar la pregunta tal cual, sin usar el pipe -->
         <h2>{{ question.question }}</h2>
-        
         <ion-radio-group [(ngModel)]="selectedAnswer[i]" (ionChange)="checkAnswer(i)">
           <ion-item *ngFor="let option of getOptions(question)">
-            <!-- Mostrar cada opción sin usar el pipe -->
             <ion-label>{{ option }}</ion-label>
             <ion-radio [value]="option" [disabled]="isAnswered(i)"></ion-radio>
           </ion-item>
@@ -22,6 +20,7 @@
     </ion-item>
   </ion-list>
 
+  <ion-spinner *ngIf="triviaQuestions.length === 0" name="circles"></ion-spinner>
   <!-- Botón para ver el puntaje final -->
   <ion-button [disabled]="!isQuizCompleted()" (click)="showToast(getFinalScore(), 'primary')">
     Ver puntaje final

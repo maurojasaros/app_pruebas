@@ -22,6 +22,7 @@ export class TriviaPage implements OnInit {
 
   ngOnInit() {
     this.loadTrivia();
+    console.log('Preguntas de trivia:', this.triviaQuestions);
   }
 
   // Método para cargar preguntas desde la base de datos o la API
@@ -34,6 +35,7 @@ export class TriviaPage implements OnInit {
         if (storedQuestions && storedQuestions.length > 0) {
           // Si encontramos preguntas almacenadas, las usamos
           this.triviaQuestions = storedQuestions;
+          console.log('Preguntas cargadas desde la base de datos local:', this.triviaQuestions);
           this.selectedAnswer = new Array(this.triviaQuestions.length).fill('');  // Inicializamos el array de respuestas seleccionadas
           this.answeredQuestions = new Array(this.triviaQuestions.length).fill(false);  // Inicializamos el array de preguntas respondidas
 
@@ -94,7 +96,9 @@ export class TriviaPage implements OnInit {
 
   // Método para obtener todas las opciones de respuesta, incluyendo la respuesta correcta y las incorrectas
   getOptions(question: any): string[] {
-    return [...question.incorrect_answers, question.correct_answer].sort(() => Math.random() - 0.5);
+    const options = [...question.incorrect_answers, question.correct_answer].sort(() => Math.random() - 0.5);
+    console.log('Opciones para la pregunta:', question.question, options);
+    return options;
   }
 
   // Método para verificar si la respuesta seleccionada es correcta

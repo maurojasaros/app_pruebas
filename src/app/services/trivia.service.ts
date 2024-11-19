@@ -17,6 +17,13 @@ export class TriviaService {
     private authService: AuthServiceService // Inyectar el servicio de autenticación
   ) {}
 
+  // Función para decodificar las entidades HTML
+  private decodeHtml(html: string): string {
+    const txt = document.createElement('textarea');
+    txt.innerHTML = html;
+    return txt.value;
+  }
+
   // Método para obtener preguntas de videojuegos desde la API
   getTrivia(): Observable<any> {
     return new Observable((observer) => {
@@ -64,18 +71,19 @@ export class TriviaService {
   // Almacenar las preguntas de trivia en la base de datos
   async storeTrivia(userEmail: string, triviaQuestions: any[]) {
     try {
-      // Verifica si la base de datos está lista
       if (!this.authService.dbInstance) {
-        await this.authService.initializeDatabase(); // Inicializa la base de datos si no está lista
+        await this.authService.initializeDatabase();
       }
-
-      // Almacena las preguntas de trivia en la base de datos
+  
+      // Asegúrate de que los datos están en el formato adecuado antes de insertarlos
       for (const question of triviaQuestions) {
-        await this.authService.dbInstance.executeSql(
-          `INSERT INTO trivia_questions (user_email, question, correct_answer, incorrect_answers)
-          VALUES (?, ?, ?, ?)`,
-          [userEmail, question.question, question.correct_answer, JSON.stringify(question.incorrect_answers)]
-        );
+        if (question && question.question && question.correct_answer && Array.isArray(question.incorrect_answers)) {
+          await this.authService.dbInstance.executeSql(
+            `INSERT INTO trivia_questions (user_email, question, correct_answer, incorrect_answers)
+             VALUES (?, ?, ?, ?)`,
+            [userEmail, question.question, question.correct_answer, JSON.stringify(question.incorrect_answers)]
+          );
+        }
       }
       console.log('Preguntas de trivia almacenadas correctamente');
     } catch (error) {
@@ -90,27 +98,26 @@ export class TriviaService {
       if (!userEmail) {
         throw new Error('No se encontró un usuario activo');
       }
-
-      // Verifica si la base de datos está lista
+  
       if (!this.authService.dbInstance) {
         await this.authService.initializeDatabase(); // Inicializa la base de datos si no está lista
       }
-
+  
       const result = await this.authService.dbInstance.executeSql(
         `SELECT * FROM trivia_questions WHERE user_email = ?`,
         [userEmail]
       );
-
+  
       let storedQuestions: any[] = [];
       for (let i = 0; i < result.rows.length; i++) {
         const row = result.rows.item(i);
         storedQuestions.push({
           question: row.question,
           correct_answer: row.correct_answer,
-          incorrect_answers: JSON.parse(row.incorrect_answers) // Convertir el string JSON de nuevo a un array
+          incorrect_answers: JSON.parse(row.incorrect_answers)
         });
       }
-
+  
       return storedQuestions;
     } catch (error) {
       console.error('Error al recuperar las preguntas almacenadas:', error);

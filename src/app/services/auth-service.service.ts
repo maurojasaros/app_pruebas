@@ -37,6 +37,7 @@ export class AuthServiceService {
   // Crear las tablas necesarias si no existen
   async createTables() {
     try {
+      console.log('Creando tablas...');
       // Crear tabla de usuarios
       await this.dbInstance.executeSql(
         `CREATE TABLE IF NOT EXISTS sesion_data(
@@ -79,30 +80,44 @@ export class AuthServiceService {
         )`, []
       );
 
-      // Crear tabla de preguntas de trivia
-      await this.dbInstance.executeSql(
-        `CREATE TABLE IF NOT EXISTS trivia_questions (
-          id INTEGER PRIMARY KEY AUTOINCREMENT,
-          user_email TEXT,
-          question TEXT,
-          correct_answer TEXT,
-          incorrect_answers TEXT,  // Se almacenan las respuestas incorrectas como un JSON string
-          FOREIGN KEY(user_email) REFERENCES sesion_data(email) ON DELETE CASCADE
-        )`, []
+      // Verificar si la tabla 'trivia_questions' existe
+      const resultTriviaQuestions = await this.dbInstance.executeSql(
+        `SELECT name FROM sqlite_master WHERE type='table' AND name='trivia_questions'`, []
       );
+      if (resultTriviaQuestions.rows.length === 0) {
+        // Si la tabla no existe, crearla
+        await this.dbInstance.executeSql(
+          `CREATE TABLE trivia_questions (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_email TEXT,
+            question TEXT,
+            correct_answer TEXT,
+            incorrect_answers TEXT,  
+            FOREIGN KEY(user_email) REFERENCES sesion_data(email) ON DELETE CASCADE
+          )`, []
+        );
+        console.log('Tabla trivia_questions creada.');
+      }
 
-        // Crear tabla de respuestas de los usuarios
-      await this.dbInstance.executeSql(
-        `CREATE TABLE IF NOT EXISTS trivia_answers(
-          id INTEGER PRIMARY KEY AUTOINCREMENT,
-          user_email TEXT,
-          question TEXT,
-          selected_answer TEXT,
-          is_correct INTEGER,
-          FOREIGN KEY(user_email) REFERENCES users(email) ON DELETE CASCADE,
-          FOREIGN KEY(question) REFERENCES trivia_questions(question) ON DELETE CASCADE
-        )`, []
+      // Verificar si la tabla 'trivia_answers' existe
+      const resultTriviaAnswers = await this.dbInstance.executeSql(
+        `SELECT name FROM sqlite_master WHERE type='table' AND name='trivia_answers'`, []
       );
+      if (resultTriviaAnswers.rows.length === 0) {
+        // Si la tabla no existe, crearla
+        await this.dbInstance.executeSql(
+          `CREATE TABLE trivia_answers (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_email TEXT,
+            question TEXT,
+            selected_answer TEXT,
+            is_correct INTEGER,
+            FOREIGN KEY(user_email) REFERENCES sesion_data(email) ON DELETE CASCADE,
+            FOREIGN KEY(question) REFERENCES trivia_questions(question) ON DELETE CASCADE
+          )`, []
+        );
+        console.log('Tabla trivia_answers creada.');
+      }
 
       console.log('Tablas creadas o verificadas');
     } catch (error) {
