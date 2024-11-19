@@ -62,6 +62,10 @@ const routes: Routes = [
   {
     path: 'experiencia-laboral',
     loadChildren: () => import('./experiencia-laboral/experiencia-laboral.module').then(m => m.ExperienciaLaboralModule)  // Aquí usamos loadChildren con el módulo ExperienciaLaboralModule
+  },
+  {
+    path: 'trivia',
+    loadChildren: () => import('./trivia/trivia.module').then( m => m.TriviaPageModule)
   }
   
   

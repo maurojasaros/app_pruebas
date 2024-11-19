@@ -20,6 +20,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { SQLite } from '@awesome-cordova-plugins/sqlite/ngx';
 import { CertificacionesModule } from './certificaciones/certificaciones.module';
 import { ExperienciaLaboralModule } from './experiencia-laboral/experiencia-laboral.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent ], 
@@ -37,7 +38,8 @@ import { ExperienciaLaboralModule } from './experiencia-laboral/experiencia-labo
     MatListModule,
     MatToolbarModule,
     CertificacionesModule,
-    ExperienciaLaboralModule
+    ExperienciaLaboralModule,
+    HttpClientModule,
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, SQLite

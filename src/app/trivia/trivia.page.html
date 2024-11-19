@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Trivia de Videojuegos
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="triviaQuestions.length > 0">
+    <ion-item *ngFor="let question of triviaQuestions; let i = index">
+      <ion-label>
+        <h2>{{ question.question }}</h2>
+        <ion-radio-group [(ngModel)]="selectedAnswer[i]">
+          <ion-item *ngFor="let option of getOptions(question)">
+            <ion-label>{{ option }}</ion-label>
+            <ion-radio slot="start" [value]="option"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+        <ion-button (click)="checkAnswer(i)">Verificar respuesta</ion-button>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-toast *ngIf="toastMessage" [message]="toastMessage" [duration]="2000"></ion-toast>
+</ion-content>
