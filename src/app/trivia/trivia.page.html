@@ -1,6 +1,14 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Trivia de Videojuegos</ion-title>
+    <ion-buttons slot="start">
+      <app-logo-component></app-logo-component>
+    </ion-buttons>
+    
+    <ion-buttons slot="end">
+      <ion-button (click)="abrirMenu()" class="custom-menu-button">
+        <ion-icon name="layers-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-button expand="full" (click)="loadTrivia()">Actualizar Preguntas</ion-button>

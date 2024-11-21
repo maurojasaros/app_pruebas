@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TriviaService } from '../services/trivia.service';
 import { ToastController } from '@ionic/angular';
 import { AuthServiceService } from '../services/auth-service.service';  // Asegúrate de importar el servicio de autenticación
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-trivia',
@@ -17,12 +18,18 @@ export class TriviaPage implements OnInit {
   constructor(
     private triviaService: TriviaService,
     private toastController: ToastController,
-    private authService: AuthServiceService // Inyectamos el servicio de autenticación
+    private authService: AuthServiceService, // Inyectamos el servicio de autenticación
+    private menu: MenuController,
   ) {}
 
   ngOnInit() {
     this.loadTrivia();
     console.log('Preguntas de trivia:', this.triviaQuestions);
+    this.menu.close("mainMenu");
+  }
+
+  abrirMenu() {
+    this.menu.open('mainMenu');
   }
 
   // Método para cargar preguntas desde la base de datos o la API

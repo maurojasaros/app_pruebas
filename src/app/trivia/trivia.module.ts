@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { TriviaPageRoutingModule } from './trivia-routing.module';
 
 import { TriviaPage } from './trivia.page';
+import { LogoComponentComponent } from '../logo-component/logo-component.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    TriviaPageRoutingModule
+    TriviaPageRoutingModule,
+    LogoComponentComponent
   ],
   declarations: [TriviaPage]
 })

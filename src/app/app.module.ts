@@ -22,6 +22,7 @@ import { CertificacionesModule } from './certificaciones/certificaciones.module'
 import { ExperienciaLaboralModule } from './experiencia-laboral/experiencia-laboral.module';
 import { HttpClientModule } from '@angular/common/http';
 
+
 @NgModule({
   declarations: [AppComponent ], 
   imports: [
@@ -40,6 +41,8 @@ import { HttpClientModule } from '@angular/common/http';
     CertificacionesModule,
     ExperienciaLaboralModule,
     HttpClientModule,
+    
+
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, SQLite
