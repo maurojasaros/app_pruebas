@@ -1,5 +1,11 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="volverAtras()">
+        <ion-icon name="arrow-back"></ion-icon>
+        Volver
+      </ion-button>
+    </ion-buttons>
     <ion-title>Experiencia Laboral</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -7,13 +13,13 @@
 <ion-content>
   <!-- Formulario para agregar una nueva experiencia laboral -->
   <ion-item>
-    <ion-label>Empresa</ion-label>
-    <ion-input [(ngModel)]="nuevaExperiencia.empresa" placeholder="Ingrese la empresa"></ion-input>
+    <ion-label>Empresa: </ion-label>
+    <ion-input [(ngModel)]="nuevaExperiencia.empresa" placeholder=" Ingrese la empresa"></ion-input>
   </ion-item>
   
   <ion-item>
-    <ion-label>Puesto</ion-label>
-    <ion-input [(ngModel)]="nuevaExperiencia.puesto" placeholder="Ingrese el puesto"></ion-input>
+    <ion-label>Puesto: </ion-label>
+    <ion-input [(ngModel)]="nuevaExperiencia.puesto" placeholder=" Ingrese el puesto"></ion-input>
   </ion-item>
   
   <ion-item>
@@ -27,8 +33,8 @@
   </ion-item>
 
   <ion-item>
-    <ion-label>Descripción</ion-label>
-    <ion-textarea [(ngModel)]="nuevaExperiencia.descripcion" placeholder="Ingrese la descripción"></ion-textarea>
+    <ion-label>Descripción:</ion-label>
+    <ion-textarea [(ngModel)]="nuevaExperiencia.descripcion" placeholder=" Ingrese la descripción"></ion-textarea>
   </ion-item>
 
   <ion-button expand="full" (click)="addExperienciaLaboral()">Agregar Experiencia</ion-button>
@@ -42,7 +48,7 @@
         <p>{{ experiencia.descripcion }}</p>
       </ion-label>
       <ion-buttons slot="end">
-        <ion-button color="primary" (click)="updateExperienciaLaboral(experiencia)">Editar</ion-button>
+        
         <ion-button color="danger" (click)="deleteExperienciaLaboral(experiencia.id)">Eliminar</ion-button>
       </ion-buttons>
     </ion-item>

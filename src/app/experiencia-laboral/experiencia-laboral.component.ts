@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from '../services/auth-service.service';  // Asegúrate de que este servicio esté correcto
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-experiencia-laboral',
@@ -13,7 +14,8 @@ export class ExperienciaLaboralComponent implements OnInit {
 
   constructor(
     private authService: AuthServiceService,  // Servicio de autenticación y base de datos
-    private router: Router  // Para navegación
+    private router: Router,  // Para navegación
+    private navCtrl: NavController
   ) {}
 
   ngOnInit() {
@@ -110,5 +112,9 @@ export class ExperienciaLaboralComponent implements OnInit {
       return result.rows.item(0).email;
     }
     return '';  // Retorna vacío si no hay sesión activa
+  }
+
+  volverAtras() {
+    this.navCtrl.back();  // Esto navega hacia atrás en el historial de navegación
   }
 }

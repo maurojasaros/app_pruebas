@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from '../services/auth-service.service';
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-certificaciones',
@@ -21,7 +22,8 @@ export class CertificacionesComponent implements OnInit {
 
   constructor(
     private authService: AuthServiceService, 
-    private router: Router
+    private router: Router,
+    private navCtrl: NavController
   ) { }
 
   ngOnInit() {
@@ -86,5 +88,9 @@ export class CertificacionesComponent implements OnInit {
     } catch (error) {
       console.error('Error al eliminar la certificación:', error);
     }
+  }
+
+  volverAtras() {
+    this.navCtrl.back();  // Esto navega hacia atrás en el historial de navegación
   }
 }
