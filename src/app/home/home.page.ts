@@ -146,4 +146,9 @@ export class HomePage implements OnInit{
   goToTrivia() {
     this.router.navigate(['/trivia']);  // Navega a la ruta '/trivia'
   }
+
+  // Función para navegar a la página del mapa
+  goToMap() {
+    this.navCtrl.navigateForward('/map'); // Usa navCtrl en minúsculas
+  }
 }

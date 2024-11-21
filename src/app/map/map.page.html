@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mapa</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Mostrar el mapa -->
+  <iframe
+    id="mapFrame"
+    [src]="mapSrc"
+    width="100%"
+    height="400px"
+    style="border:0;"
+    allowfullscreen
+    loading="lazy"
+  ></iframe>
+
+  <!-- Botón para recargar el mapa -->
+  <ion-button expand="full" (click)="getLocationAndShowOnMap()">
+    Obtener Ubicación
+  </ion-button>
+</ion-content>
+

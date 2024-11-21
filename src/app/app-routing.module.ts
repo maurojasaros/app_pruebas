@@ -66,6 +66,10 @@ const routes: Routes = [
   {
     path: 'trivia',
     loadChildren: () => import('./trivia/trivia.module').then( m => m.TriviaPageModule)
+  },
+  {
+    path: 'map',
+    loadChildren: () => import('./map/map.module').then( m => m.MapPageModule)
   }
   
   
