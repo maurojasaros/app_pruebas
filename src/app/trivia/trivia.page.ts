@@ -25,7 +25,7 @@ export class TriviaPage implements OnInit {
   ngOnInit() {
     this.loadTrivia();
     console.log('Preguntas de trivia:', this.triviaQuestions);
-    
+    this.menu.close("mainMenu");
   }
 
   abrirMenu() {

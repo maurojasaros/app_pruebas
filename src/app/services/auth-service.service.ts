@@ -50,6 +50,7 @@ export class AuthServiceService {
           direccion TEXT,
           calle TEXT,
           ciudad TEXT,
+          fecha_nacimiento TEXT,
           active INTEGER DEFAULT 0
         )`, []
       );
@@ -134,9 +135,10 @@ export class AuthServiceService {
     nivelEducacion: string,
     direccion: string,
     calle: string,
-    ciudad: string
+    ciudad: string,
+    fechaNacimiento: string
   ): Promise<boolean> {
-    if (!nombre || !apellido || !email || !password || !nivelEducacion || !direccion || !calle || !ciudad) {
+    if (!nombre || !apellido || !email || !password || !nivelEducacion || !direccion || !calle || !ciudad || !fechaNacimiento) {
       console.error('Todos los campos son obligatorios');
       return false;
     }
