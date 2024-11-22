@@ -7,7 +7,7 @@
         Volver
       </ion-button>
     </ion-buttons>
-    <ion-title>Mis Certificaciones</ion-title>
+    <ion-title>Mis Datos</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -34,6 +34,10 @@
       <ion-item>
         <ion-label position="floating">Ciudad</ion-label>
         <ion-input [(ngModel)]="userData.ciudad" name="ciudad" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Fecha de nacimiento</ion-label>
+        <ion-input [(ngModel)]="userData.fecha_nacimiento" name="fecha_nacimiento" type="date" required></ion-input>
       </ion-item>
 
       <ion-button expand="full" type="submit">Actualizar</ion-button>

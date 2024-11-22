@@ -151,9 +151,9 @@ export class AuthServiceService {
 
       // Insertar el nuevo usuario en la base de datos
       await this.dbInstance.executeSql(
-        `INSERT INTO sesion_data (nombre, apellido, email, password, nivel_educacion, direccion, calle, ciudad)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
-        [nombre, apellido, email, password, nivelEducacion, direccion, calle, ciudad]
+        `INSERT INTO sesion_data (nombre, apellido, email, password, nivel_educacion, direccion, calle, ciudad, fecha_nacimiento)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        [nombre, apellido, email, password, nivelEducacion, direccion, calle, ciudad, fechaNacimiento]
       );
 
       // Al registrar el usuario, lo marcamos como sesión activa
@@ -351,9 +351,10 @@ async getActiveUserEmail(): Promise<string | null> {
     apellido: string,
     direccion: string,
     calle: string,
-    ciudad: string
+    ciudad: string,
+    fechaNacimiento: string
   ): Promise<boolean> {
-    if (!nombre || !apellido || !direccion || !calle || !ciudad) {
+    if (!nombre || !apellido || !direccion || !calle || !ciudad || !fechaNacimiento) {
       console.error('Todos los campos son obligatorios');
       return false;
     }
@@ -367,9 +368,9 @@ async getActiveUserEmail(): Promise<string | null> {
       // Actualizar los datos del usuario en la base de datos
       await this.dbInstance.executeSql(
         `UPDATE sesion_data
-        SET nombre = ?, apellido = ?, direccion = ?, calle = ?, ciudad = ?
+        SET nombre = ?, apellido = ?, direccion = ?, calle = ?, ciudad = ?, fecha_nacimiento = ?
         WHERE email = ?`,
-        [nombre, apellido, direccion, calle, ciudad, email]
+        [nombre, apellido, direccion, calle, ciudad, fechaNacimiento, email]
       );
       return true;
     } catch (error) {
