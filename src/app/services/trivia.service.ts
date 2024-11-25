@@ -75,7 +75,7 @@ export class TriviaService {
         await this.authService.initializeDatabase();
       }
   
-      // Asegúrate de que los datos están en el formato adecuado antes de insertarlos
+      
       for (const question of triviaQuestions) {
         if (question && question.question && question.correct_answer && Array.isArray(question.incorrect_answers)) {
           await this.authService.dbInstance.executeSql(
