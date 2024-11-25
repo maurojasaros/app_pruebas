@@ -120,6 +120,18 @@ export class HomePage implements OnInit{
     }
   }
 
+  
+  // Método que se llama cuando cambia el segmento
+  segmentChanged(event: any) {
+    console.log('Segmento cambiado:', event.detail.value);
+    this.selectedSegment = event.detail.value;
+  }
+  goToExperienciaLaboral() {
+    this.selectedSegment = 'experiencia-laboral'; // Cambiar al segmento "experiencia-laboral"
+  }
+
+
+
   // Método de redirección para cargar el perfil de los datos
   navigateToMisDatos() {
     this.router.navigate(['/mis-datos']);  // Navega a la ruta de Mis Datos
@@ -133,13 +145,5 @@ export class HomePage implements OnInit{
    navigateToExperienciaLaboral() {
     this.router.navigate(['/experiencia-laboral']);
   }
-  // Método que se llama cuando cambia el segmento
-  segmentChanged(event: any) {
-    console.log('Segmento cambiado:', event.detail.value);
-    this.selectedSegment = event.detail.value;
-  }
-  goToExperienciaLaboral() {
-    this.selectedSegment = 'experiencia-laboral'; // Cambiar al segmento "experiencia-laboral"
-  }
-
+  
 }

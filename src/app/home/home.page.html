@@ -20,7 +20,7 @@
   </div>
 
   <!-- Barra de Segmento para cambiar entre diferentes vistas -->
-  <!--<ion-toolbar>
+  <ion-toolbar>
     <ion-segment [(ngModel)]="selectedSegment" (ionChange)="segmentChanged($event)">
       <ion-segment-button value="perfil">
         <ion-icon name="home"></ion-icon>
@@ -35,25 +35,24 @@
         <ion-label>Certificaciones</ion-label>
       </ion-segment-button>
     </ion-segment>
-  </ion-toolbar> -->
+  </ion-toolbar>
   
-  <!-- Contenido dinámico que cambia según el segmento seleccionado 
+  <!-- Contenido dinámico que cambia según el segmento seleccionado -->
   <div [ngSwitch]="selectedSegment">
     <app-mis-datos *ngSwitchCase="'perfil'"></app-mis-datos>
     <app-experiencia-laboral *ngSwitchCase="'experiencia-laboral'"></app-experiencia-laboral>
     <app-certificaciones *ngSwitchCase="'certificaciones'"></app-certificaciones>
   </div>
-  -->
-  <!-- Sección de Categorías de Juegos -->
-
-<!-- Botón para navegar a Mis Datos -->
   
   <div>
     <ion-button expand="full" (click)="navigateToMisDatos()">Ver Mis Datos</ion-button> <!-- Botón aquí -->
     <ion-button expand="full" (click)="navigateToCertificaciones()">Ver Certificaciones</ion-button> <!-- Botón aquí -->
     <ion-button expand="full" (click)="navigateToExperienciaLaboral()">Ver Experiencia Laboral</ion-button>
-    <h2 class="category-title">Categorías de Juegos</h2>
-  </div>  
+  </div>
+  
+  <!-- Sección de Categorías de Juegos -->
+  <h2 class="category-title">Categorías de Juegos</h2>
+  
   <div class="game-list">
     <app-game-card 
       *ngFor="let juego of juegos" 
@@ -65,7 +64,6 @@
     </app-game-card>
   </div>
 
-  
-  
+  <!-- Botón para navegar a Mis Datos -->
   
 </ion-content>

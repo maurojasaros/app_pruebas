@@ -32,33 +32,23 @@ export class MisDatosComponent implements OnInit, AfterViewChecked {
     // this.cdr.detectChanges();
   }
 
-  // Método para convertir la fecha de nacimiento a formato YYYY-MM-DD
-  formatFechaNacimiento(fecha: string): string {
-    const date = new Date(fecha);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');  // Asegura que el mes tenga dos dígitos
-    const day = String(date.getDate()).padStart(2, '0');  // Asegura que el día tenga dos dígitos
-    return `${year}-${month}-${day}`;  // Devuelve la fecha en formato YYYY-MM-DD
-  }
-
   // Cargar los datos del usuario
   async loadUserData() {
     try {
       const email = await this.authService.getActiveUserEmail();
-      console.log('Email del usuario activo:', email);
+      console.log('Email del usuario activo:', email);  // Obtener el email del usuario activo
       if (email) {
         this.userData = await this.authService.getUserData(email);  // Obtener los datos del usuario por email
-        // Convertir la fecha de nacimiento al formato adecuado para el input de tipo date
-        if (this.userData.fecha_nacimiento) {
-          this.userData.fecha_nacimiento = this.formatFechaNacimiento(this.userData.fecha_nacimiento);
-        }
+        delete this.userData.fecha_nacimiento;
+        console.log('Email del usuario activo:', email);
         console.log('Datos del usuario cargados:', JSON.stringify(this.userData));
         setTimeout(() => {
-          this.cdr.detectChanges();  // Forzar la detección de cambios para asegurar que la vista se actualice
+          // Este timeout dará tiempo para que Angular procese los cambios
+          this.cdr.detectChanges();
         }, 0);
       } else {
         console.error('No hay usuario activo');
-        this.router.navigate(['/login']);
+        this.router.navigate(['/login']);  // Redirigir a login si no hay sesión activa
       }
     } catch (error) {
       console.error('Error al cargar los datos del usuario', error);
@@ -69,8 +59,8 @@ export class MisDatosComponent implements OnInit, AfterViewChecked {
   async updateData() {
     const email = await this.authService.getActiveUserEmail();  // Obtener el email del usuario activo
     if (email) {
-      const { nombre, apellido, direccion, calle, ciudad, fecha_nacimiento } = this.userData;
-      const success = await this.authService.updateUserData(email, nombre, apellido, direccion, calle, ciudad, fecha_nacimiento);
+      const { nombre, apellido, direccion, calle, ciudad } = this.userData;
+      const success = await this.authService.updateUserData(email, nombre, apellido, direccion, calle, ciudad);
       if (success) {
         console.log('Datos actualizados con éxito');
       } else {

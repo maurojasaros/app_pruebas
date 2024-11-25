@@ -18,7 +18,7 @@ export class RegistroPage {
   direccion: string = '';
   calle: string = '';
   ciudad: string = '';
-  selectedDate: any = '';
+  //selectedDate: any = '';
   password: string = '';
   isAnimating: boolean = false;
 
@@ -54,7 +54,7 @@ export class RegistroPage {
         Su nombre es: ${this.nombre} ${this.apellido} <br>
         Nivel de Educación: ${this.nivelEducacion} <br>
         Dirección: ${this.direccion}, ${this.calle}, ${this.ciudad} <br>
-        Fecha de Nacimiento: ${this.selectedDate}
+        
       `,
       buttons: ['OK']
     });
@@ -71,7 +71,7 @@ export class RegistroPage {
       this.direccion = '';
       this.calle = '';
       this.ciudad = '';
-      this.selectedDate = '';
+      //this.selectedDate = '';
       this.password = '';  // Limpiar también el campo de contraseña
       this.isAnimating = false;
     }, 1000);
@@ -88,17 +88,17 @@ export class RegistroPage {
     await alert.present();
   }
 
-  formatDate(date: any): string {
+  /*formatDate(date: any): string {
     const options: Intl.DateTimeFormatOptions = {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
     };
     return new Date(date).toLocaleDateString('es-CL', options); // Formato de Chile
-  }
+  }*/
 
   // Método para calcular la edad
-  calcularEdad(fechaNacimiento: Date): number {
+  /*calcularEdad(fechaNacimiento: Date): number {
     const hoy = new Date();
     let edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
     const mesNacimiento = fechaNacimiento.getMonth();
@@ -109,7 +109,7 @@ export class RegistroPage {
     }
 
     return edad;
-  }
+  }*/
 
   // Método para guardar datos
   guardar() {
@@ -123,7 +123,7 @@ export class RegistroPage {
       this.direccion.trim() === '' || 
       this.calle.trim() === '' || 
       this.ciudad.trim() === '' || 
-      !this.selectedDate ||
+      //!this.selectedDate ||
       this.password.trim() === ''  // Verificar que la contraseña no esté vacía
     ) {
       let errorMessage = '';
@@ -133,7 +133,7 @@ export class RegistroPage {
       if (this.direccion.trim() === '') errorMessage += 'Dirección, ';
       if (this.calle.trim() === '') errorMessage += 'Calle, ';
       if (this.ciudad.trim() === '') errorMessage += 'Ciudad, ';
-      if (!this.selectedDate) errorMessage += 'Fecha de nacimiento, ';
+      //if (!this.selectedDate) errorMessage += 'Fecha de nacimiento, ';
       if (this.password.trim() === '') errorMessage += 'Contraseña';  // Mensaje si la contraseña está vacía
 
       this.presentAlert(`Error: Los siguientes campos están vacíos: ${errorMessage.slice(0, -2)}`);
@@ -141,13 +141,13 @@ export class RegistroPage {
     }
 
     // Verificación de edad
-    const fechaNacimiento = new Date(this.selectedDate);
+    /*const fechaNacimiento = new Date(this.selectedDate);
     const edad = this.calcularEdad(fechaNacimiento);
 
     if (edad < 18) {
       this.presentAlert('Error: Debes tener al menos 18 años');
       return; 
-    }
+    }*/
 
     // Llamada al servicio de autenticación para registrar el usuario
     this.authService.registerUser(
@@ -159,13 +159,12 @@ export class RegistroPage {
       this.direccion,
       this.calle,
       this.ciudad,
-      this.selectedDate
+      
     ).then((success) => {
       if (success) {
         this.presentAlert('Registro exitoso');
         // Redirigir al login después de un registro exitoso
-        // Aquí puedes agregar código para redirigir a la página de login, como por ejemplo:
-        // this.router.navigate(['/login']);
+        
       } else {
         this.presentAlert('Error al registrar usuario. Por favor, intenta de nuevo.');
       }

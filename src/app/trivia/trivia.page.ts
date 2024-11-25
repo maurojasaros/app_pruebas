@@ -26,6 +26,7 @@ export class TriviaPage implements OnInit {
     this.loadTrivia();
     console.log('Preguntas de trivia:', this.triviaQuestions);
     this.menu.close("mainMenu");
+    
   }
 
   abrirMenu() {

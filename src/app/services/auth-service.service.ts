@@ -11,8 +11,8 @@ export class AuthServiceService {
 
   constructor(
     private sqlite: SQLite,
-    private router: Router,  // Inyectar Router
-    private platform: Platform // Inyectar Platform
+    private router: Router, 
+    private platform: Platform 
   ) {
     // Asegurarse de que la base de datos se inicialice en cuanto el servicio se crea
     this.initializeDatabase();
@@ -50,7 +50,6 @@ export class AuthServiceService {
           direccion TEXT,
           calle TEXT,
           ciudad TEXT,
-          fecha_nacimiento TEXT,
           active INTEGER DEFAULT 0
         )`, []
       );
@@ -135,10 +134,9 @@ export class AuthServiceService {
     nivelEducacion: string,
     direccion: string,
     calle: string,
-    ciudad: string,
-    fechaNacimiento: string
+    ciudad: string
   ): Promise<boolean> {
-    if (!nombre || !apellido || !email || !password || !nivelEducacion || !direccion || !calle || !ciudad || !fechaNacimiento) {
+    if (!nombre || !apellido || !email || !password || !nivelEducacion || !direccion || !calle || !ciudad) {
       console.error('Todos los campos son obligatorios');
       return false;
     }
@@ -151,9 +149,9 @@ export class AuthServiceService {
 
       // Insertar el nuevo usuario en la base de datos
       await this.dbInstance.executeSql(
-        `INSERT INTO sesion_data (nombre, apellido, email, password, nivel_educacion, direccion, calle, ciudad, fecha_nacimiento)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-        [nombre, apellido, email, password, nivelEducacion, direccion, calle, ciudad, fechaNacimiento]
+        `INSERT INTO sesion_data (nombre, apellido, email, password, nivel_educacion, direccion, calle, ciudad)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+        [nombre, apellido, email, password, nivelEducacion, direccion, calle, ciudad]
       );
 
       // Al registrar el usuario, lo marcamos como sesión activa
@@ -351,10 +349,9 @@ async getActiveUserEmail(): Promise<string | null> {
     apellido: string,
     direccion: string,
     calle: string,
-    ciudad: string,
-    fechaNacimiento: string
+    ciudad: string
   ): Promise<boolean> {
-    if (!nombre || !apellido || !direccion || !calle || !ciudad || !fechaNacimiento) {
+    if (!nombre || !apellido || !direccion || !calle || !ciudad) {
       console.error('Todos los campos son obligatorios');
       return false;
     }
@@ -368,9 +365,9 @@ async getActiveUserEmail(): Promise<string | null> {
       // Actualizar los datos del usuario en la base de datos
       await this.dbInstance.executeSql(
         `UPDATE sesion_data
-        SET nombre = ?, apellido = ?, direccion = ?, calle = ?, ciudad = ?, fecha_nacimiento = ?
+        SET nombre = ?, apellido = ?, direccion = ?, calle = ?, ciudad = ?
         WHERE email = ?`,
-        [nombre, apellido, direccion, calle, ciudad, fechaNacimiento, email]
+        [nombre, apellido, direccion, calle, ciudad, email]
       );
       return true;
     } catch (error) {

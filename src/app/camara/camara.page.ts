@@ -51,10 +51,7 @@ export class CamaraPage implements AfterViewInit {
   setCanvasSize() {
     if (this.canvas) {
       const canvasElement = this.canvas.nativeElement;
-      // Puedes elegir no limitar el tamaño del canvas
-      // Aquí lo ajustamos a la ventana por si lo deseas, pero se puede omitir si prefieres usar el tamaño original de la imagen.
-      // canvasElement.width = window.innerWidth - 40; // 40px de margen (ajustable)
-      // canvasElement.height = window.innerHeight / 2; // El canvas ocupará la mitad de la altura de la ventana
+      
     }
   }
 

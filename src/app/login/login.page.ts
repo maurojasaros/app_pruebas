@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { AuthServiceService } from '../services/auth-service.service';
@@ -12,26 +12,21 @@ import { AuthServiceService } from '../services/auth-service.service';
 export class LoginPage implements OnInit {
   email: string = '';
   password: string = '';
-  returnUrl: string = '';  // Variable para almacenar la URL de retorno
 
   constructor(
     private navCtrl: NavController,
     private alertController: AlertController,
     private router: Router,
-    private route: ActivatedRoute,  // Para obtener los parámetros de la ruta
     private authService: AuthServiceService
   ) { }
 
   async ngOnInit() {
-    // Verificar si ya hay una sesión activa al iniciar la página
+    // Verificar si hay una sesión activa al iniciar la página
     const isLoggedIn = await this.authService.isSessionActive();
     if (isLoggedIn) {
       // Si ya hay sesión activa, redirigir al Home
       this.router.navigate(['/home']);
     }
-
-    // Obtener la URL de retorno desde los parámetros de la ruta, si existe
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
   }
 
   goToRegister() {
@@ -87,8 +82,8 @@ export class LoginPage implements OnInit {
       // Si el login es exitoso, actualizar la sesión en SQLite
       await this.authService.setSessionActive(this.email, true);
 
-      // Redirigir a la URL original o a la página principal si no hay retorno
-      this.router.navigateByUrl(this.returnUrl);
+      // Navegar a la página de inicio
+      this.navCtrl.navigateForward(['/home']);
     } else {
       // Si no es válido, muestra un mensaje de error
       this.mostrarAlerta('Correo o contraseña incorrectos.');

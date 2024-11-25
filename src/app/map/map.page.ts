@@ -14,8 +14,8 @@ export class MapPage implements OnInit {
   constructor(private menu: MenuController) { }
 
      // Coordenadas personalizadas
-    latitude: number = -36.839481028609754; // Latitud de Duoc UC: Antonio Varas
-    longitude: number = -73.00239062642865; // Longitud de Duoc UC: Antonio Varas
+    latitude: number = -36.839481028609754; // Latitud de mi casa
+    longitude: number = -73.00239062642865; // Longitud de mi casa
     
   ngOnInit() {
     this.menu.close("mainMenu");
@@ -44,10 +44,7 @@ export class MapPage implements OnInit {
         enableHighAccuracy: true,
       });
 
-      //const latitude = position.coords.latitude;
-      //const longitude = position.coords.longitude;
-
-      //alert(latitude+" "+longitude);
+      
 
       // Mostrar la ubicación en el mapa
       const mapFrame: HTMLIFrameElement | null = document.getElementById(
